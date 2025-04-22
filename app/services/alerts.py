@@ -1,6 +1,16 @@
 import random # Import random to simulate random delays
 from datetime import datetime # Get current time
 
+import logging
+
+# Configure logging
+logging.basicConfig(
+    filename="delay_log.txt",  # log will be saved in this file
+    level=logging.INFO,        # only logs INFO and above
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+
 
 class DelayInfo():
     '''
@@ -43,6 +53,7 @@ def get_current_delays():
         reason = "Heavy snow"
         # Get the current time formatting it to show only hour and minute.
         current_time = datetime.now().replace(second=0, microsecond=0)
+        # Convert the datetime object to a string
         expected_time = current_time.strftime("%H:%M")
 
         # Randomly choose how long the bus is delayed.
@@ -60,3 +71,27 @@ def get_current_delays():
         "status": "ok", # status to tell us everything worked
         "data": delay_dict # data holds the delay info or None
     }    
+
+def check_delay(info, threshold=5):
+    '''
+    Check if the delay stored in the DelayInfo object exceeds the threshold.
+    
+    Parameters:
+    - info (DelayInfo): An instance of DelayInfo containing delay data.
+    - threshold (int): The delay time (in minutes)
+    
+    Returns:
+    - dict: A dictionary showing delay status and how many minutes late
+    '''
+    
+    if info._delay_minutes > threshold:
+        logging.info(f"Delay detected for route {info._route}: {info._delay_minutes} minutes")
+        return {
+            "status": "delayed",
+            "minutes_late": int(info._delay_minutes)
+        }
+    else:
+        return {
+            "status": "on time",
+            "minutes_late": 0
+        }

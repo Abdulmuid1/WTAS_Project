@@ -18,4 +18,4 @@ def get_delay_info():
 @app.get("/")
 def read_root():
     # This route handles the default home URL and returns a welcome message
-    return f"Welcome to the WTAS Project API!"
+    return {"message": "Welcome to the Winter Transit Alert System"}

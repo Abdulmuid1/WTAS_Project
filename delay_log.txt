@@ -1,0 +1,6 @@
+2025-04-22 03:02:37,135 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-22 03:02:37,171 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-22 03:02:37,194 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-22 03:10:44,289 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-22 03:10:44,343 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-22 03:10:44,353 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
