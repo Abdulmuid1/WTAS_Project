@@ -43,7 +43,24 @@ class TestRootEndpoint(unittest.TestCase):
             "minutes_late": 15
         }
         self.assertEqual(result, expected)    
-        
+
+    def test_mocked_delays_response(self):
+        # Simulate a call to the /delays route
+        response = client.get("/delays")
+        self.assertEqual(response.status_code, 200)
+
+        result = response.json()
+        self.assertIn("status", result)
+        self.assertIn("data", result)
+
+        delay = result["data"]
+        self.assertIsInstance(delay, dict)  
+        self.assertIn("route", delay)
+        self.assertIn("station", delay)
+        self.assertIn("reason", delay)
+        self.assertIn("expected_arrival", delay)
+        self.assertIn("delay_minutes", delay)            
+            
 
 
 if __name__ == "__main__":
