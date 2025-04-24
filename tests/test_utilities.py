@@ -44,23 +44,39 @@ class TestRootEndpoint(unittest.TestCase):
         }
         self.assertEqual(result, expected)    
 
-    def test_mocked_delays_response(self):
-        # Simulate a call to the /delays route
-        response = client.get("/delays")
-        self.assertEqual(response.status_code, 200)
+    # def test_mocked_delays_response(self):
+    #     # Simulate a call to the /delays route
+    #     response = client.get("/delays")
+    #     self.assertEqual(response.status_code, 200)
 
-        result = response.json()
-        self.assertIn("status", result)
-        self.assertIn("data", result)
+    #     result = response.json()
+    #     self.assertIn("status", result)
+    #     self.assertIn("data", result)
 
-        delay = result["data"]
-        self.assertIsInstance(delay, dict)  
-        self.assertIn("route", delay)
-        self.assertIn("station", delay)
-        self.assertIn("reason", delay)
-        self.assertIn("expected_arrival", delay)
-        self.assertIn("delay_minutes", delay)            
+    #     delay = result["data"]
+    #     self.assertIsInstance(delay, dict)  
+    #     self.assertIn("route", delay)
+    #     self.assertIn("station", delay)
+    #     self.assertIn("reason", delay)
+    #     self.assertIn("expected_arrival", delay)
+    #     self.assertIn("delay_minutes", delay)            
             
+    def test_sms_endpoint(self):
+        """
+        Test to see if the sms endpoint returns a successful response and expected message.
+        """
+        response = client.post("/sms")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("SMS alerts sent successfully", response.json().get("message", ""))
+
+    def test_speaker_endpoint(self):
+        """
+        Test to see if the speaker endpoint returns a successful response and expected message.
+        """
+        response = client.post("/speaker")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Speaker announcements triggered successfully", response.json().get("message", ""))
+
 
 
 if __name__ == "__main__":

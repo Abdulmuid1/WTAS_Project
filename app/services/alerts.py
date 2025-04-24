@@ -1,5 +1,5 @@
 import random # Import random to simulate random delays
-from datetime import datetime # Get current time
+from datetime import datetime, timedelta # Get current time
 
 import logging
 
@@ -13,9 +13,9 @@ logging.basicConfig(
 
 
 class DelayInfo():
-    '''
+    """
     A class to organize delay-related information in one object.
-    '''
+    """
     def __init__(self, route, station, reason, expected_arrival, delay_minutes):
         self._route = route
         self._station = station                
@@ -24,9 +24,9 @@ class DelayInfo():
         self._delay_minutes = delay_minutes
     
     def to_dict(self):
-        '''
+        """
         Converts the object's attributes into a dictionary
-        '''
+        """
         result = {}
         result["route"] = self._route
         result["station"] = self._station
@@ -40,37 +40,37 @@ class DelayInfo():
 
 def get_current_delays():
     """
-    Simulates fetching real-time delay data.
+    Return a list of current mocked transit delays.
+    Each delay is represented as a DelayInfo object.
     """
-    # Simulate a delay happening randomly
-    is_delayed = random.choice([True, False])
-  
-    if is_delayed: # If there's a delay
-        # Simulate random delay information
-        # Hardcoded data just for testing
-        route = "Bus 12"
-        station = "Southgate"
-        reason = "Heavy snow"
-        # Get the current time formatting it to show only hour and minute.
-        current_time = datetime.now().replace(second=0, microsecond=0)
-        # Convert the datetime object to a string
-        expected_time = current_time.strftime("%H:%M")
+    # Get the current time
+    current_time = datetime.now() 
 
-        # Randomly choose how long the bus is delayed.
-        delay_minutes = random.choice([5, 10, 15])
-
-        # Create a DelayInfo object with this data
-        delay_info = DelayInfo(route, station, reason, expected_time, delay_minutes)
-        delay_dict = delay_info.to_dict()
-
-    else: # If there's no delay, return none
-        delay_dict = None    
-
-    # Return as a dictionary structure so FastAPI can convert it to JSON
-    return {
-        "status": "ok", # status to tell us everything worked
-        "data": delay_dict # data holds the delay info or None
-    }    
+    # Create a list of DelayInfo objects, with each representing a delay
+    delays = [
+        DelayInfo(
+            route="Bus 12",
+            station="Southgate",
+            reason="Heavy snow",
+            expected_arrival=(current_time + timedelta(minutes=5)).strftime("%H:%M"),
+            delay_minutes=5
+        ),
+        DelayInfo(
+            route="Train 4",
+            station="University",
+            reason="Signal issues",
+            expected_arrival=(current_time + timedelta(minutes=12)).strftime("%H:%M"),
+            delay_minutes=12
+        ),
+        DelayInfo(
+            route="Bus 8",
+            station="NAIT",
+            reason="Mechanical issue",
+            expected_arrival=(current_time + timedelta(minutes=8)).strftime("%H:%M"),
+            delay_minutes=8
+        )
+    ]
+    return delays 
 
 def check_delay(info, threshold=5):
     '''

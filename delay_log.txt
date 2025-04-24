@@ -19,3 +19,32 @@
 2025-04-22 20:35:09,083 - INFO - HTTP Request: GET http://testserver/delays "HTTP/1.1 200 OK"
 2025-04-22 20:35:09,105 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
 2025-04-22 20:35:09,142 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 16:52:06,279 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-23 16:52:06,348 - INFO - HTTP Request: GET http://testserver/delays "HTTP/1.1 200 OK"
+2025-04-23 16:52:06,358 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 16:52:06,371 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 16:53:49,404 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-23 16:53:49,482 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 16:53:49,515 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 17:01:07,413 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-23 17:01:07,494 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 17:01:07,505 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 17:01:07,533 - INFO - Sending SMS: Delay on Bus 12 at Southgate: 5 minutes late
+2025-04-23 17:01:07,533 - INFO - Sending SMS: Delay on Train 4 at University: 12 minutes late
+2025-04-23 17:01:07,533 - INFO - Sending SMS: Delay on Bus 8 at NAIT: 8 minutes late
+2025-04-23 17:01:07,537 - INFO - HTTP Request: POST http://testserver/sms "HTTP/1.1 200 OK"
+2025-04-23 17:01:07,547 - INFO - Speaker Announcement: Attention! Bus 12 is delayed at Southgate by 5 minutes due to Heavy snow.
+2025-04-23 17:01:07,548 - INFO - Speaker Announcement: Attention! Train 4 is delayed at University by 12 minutes due to Signal issues.
+2025-04-23 17:01:07,548 - INFO - Speaker Announcement: Attention! Bus 8 is delayed at NAIT by 8 minutes due to Mechanical issue.
+2025-04-23 17:01:07,553 - INFO - HTTP Request: POST http://testserver/speaker "HTTP/1.1 200 OK"
+2025-04-23 17:02:26,690 - INFO - Delay detected for route Bus 2: 15 minutes
+2025-04-23 17:02:26,738 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 17:02:26,755 - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2025-04-23 17:02:26,775 - INFO - Sending SMS: Delay on Bus 12 at Southgate: 5 minutes late
+2025-04-23 17:02:26,775 - INFO - Sending SMS: Delay on Train 4 at University: 12 minutes late
+2025-04-23 17:02:26,775 - INFO - Sending SMS: Delay on Bus 8 at NAIT: 8 minutes late
+2025-04-23 17:02:26,782 - INFO - HTTP Request: POST http://testserver/sms "HTTP/1.1 200 OK"
+2025-04-23 17:02:26,789 - INFO - Speaker Announcement: Attention! Bus 12 is delayed at Southgate by 5 minutes due to Heavy snow.
+2025-04-23 17:02:26,789 - INFO - Speaker Announcement: Attention! Train 4 is delayed at University by 12 minutes due to Signal issues.
+2025-04-23 17:02:26,789 - INFO - Speaker Announcement: Attention! Bus 8 is delayed at NAIT by 8 minutes due to Mechanical issue.
+2025-04-23 17:02:26,792 - INFO - HTTP Request: POST http://testserver/speaker "HTTP/1.1 200 OK"
