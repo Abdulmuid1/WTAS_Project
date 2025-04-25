@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wtas-deployment
+  labels:
+    app: wtas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wtas
+  template:
+    metadata:
+      labels:
+        app: wtas
+    spec:
+      containers:
+        - name: wtas-container
+          image: 643989280406.dkr.ecr.ca-central-1.amazonaws.com/wtas-api:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: wtas-config
+                  key: PORT
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      imagePullSecrets:         
+        - name: ecr-secret

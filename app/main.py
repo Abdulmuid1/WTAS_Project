@@ -3,8 +3,14 @@ from fastapi import FastAPI
 # Import the function checking for delays
 from app.services.alerts import get_current_delays
 from app.api import routes
+from dotenv import load_dotenv
+import os
 
 import logging
+
+load_dotenv() 
+# Set default port to 8000
+port = int(os.getenv("PORT", 8000))
 
 # Create a FastAPI app object
 app = FastAPI()
@@ -43,6 +49,11 @@ def speaker_announcement():
         logging.info(f"Speaker Announcement: Attention! {delay._route} is delayed at {delay._station} by {delay._delay_minutes} minutes due to {delay._reason}.")
     return {"message": "Speaker announcements triggered successfully."}
 
+# Temporary function to test .env setup
+# @app.get("/env-check")
+# def read_env():
+#     port = os.getenv("PORT", "Not found")
+#     return {"PORT": port}
 
 # This is a temporary function to test mocked delay data
 # @app.get("/delays")
