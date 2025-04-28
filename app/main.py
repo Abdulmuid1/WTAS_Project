@@ -54,6 +54,7 @@ def speaker_announcement():
         logging.info(f"Speaker Announcement: Attention! {delay._route} is delayed at {delay._station} by {delay._delay_minutes} minutes due to {delay._reason}.")
     return {"message": "Speaker announcements triggered successfully."}
 
+
 # Temporary function to test .env setup
 # @app.get("/env-check")
 # def read_env():
