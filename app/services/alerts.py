@@ -1,4 +1,3 @@
-import random # Import random to simulate random delays
 from datetime import datetime, timedelta # Get current time
 
 import logging

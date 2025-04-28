@@ -23,6 +23,11 @@ def read_root():
     # This route handles the default home URL and returns a welcome message
     return {"message": "Welcome to the Winter Transit Alert System"}
 
+# Debug health check issues 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 # Define a route the browser can visit to get the delay info
 @app.get("/delays")
 def get_delay_info():
