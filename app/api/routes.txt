@@ -1,0 +1,198 @@
+Bus 1A Downtown
+Bus 1A Capilano
+Bus 2 West Edmonton Mall
+Bus 2 Stadium/Clareview
+Bus 3 Westmount
+Bus 3 Stadium
+Bus 4 Lewis Farms
+Bus 4 Capilano
+Bus 5 Westmount
+Bus 5 Coliseum
+Bus 6 Davies
+Bus 6 Southgate
+Bus 7 West Edmonton Mall
+Bus 7 Downtown
+Bus 8 Abbottsfield
+Bus 8 University
+Bus 9 Eaux Claires
+Bus 9 Southgate/Century Park
+Bus 31 University
+Bus 31 Leger
+Bus 51 Castle Downs
+Bus 51 University
+Bus 52 West Edmonton Mall
+Bus 52 Northgate
+Bus 53 Clareview
+Bus 53 Mill Woods
+Bus 54 West Edmonton Mall
+Bus 54 Clareview
+Bus 55 West Edmonton Mall
+Bus 55 Meadows
+Bus 56 Meadows
+Bus 56 West Edmonton Mall
+Bus 101 Abbottsfield
+Bus 101 Stadium
+Bus 102 Abbottsfield
+Bus 102 Kingsway
+Bus 103 Eaux Claires
+Bus 103 Kingsway
+Bus 104 Coliseum
+Bus 104 Clareview
+Bus 106 Dunvegan
+Bus 106 Belvedere
+Bus 107 Belvedere
+Bus 107 Clareview
+Bus 108 Belvedere
+Bus 108 Clareview
+Bus 109 Northgate
+Bus 109 Castle Downs
+Bus 110X Eaux Claires
+Bus 110X Downtown
+Bus 111 McQueen
+Bus 111 Riverdale
+Bus 112 Castle Downs
+Bus 112 Eaux Claires
+Bus 113 Northgate
+Bus 113 Clareview
+Bus 114 Northgate
+Bus 114 Clareview
+Bus 116 Abbottsfield
+Bus 116 Clareview
+Bus 117 Eaux Claires
+Bus 117 Clareview
+Bus 118 Eaux Claires
+Bus 118 Clareview
+Bus 119 Eaux Claires
+Bus 119 Clareview
+Bus 120X Eaux Claires
+Bus 120X Government Centre
+Bus 121 Clareview
+Bus 121 Evergreen
+Bus 122 Eaux Claires
+Bus 122 Lago Lindo
+Bus 123 Northgate
+Bus 123 Coliseum
+Bus 124 Westmount
+Bus 124 Eaux Claires
+Bus 127 Northgate
+Bus 127 Castle Downs
+Bus 128 Northgate
+Bus 128 Londonderry
+Bus 130X Baturyn
+Bus 130X Government Centre
+Bus 131 Riverdale
+Bus 131 Downtown
+Bus 140X Palisades
+Bus 140X Kingsway
+Bus 150X Dunluce
+Bus 150X Government Centre
+Bus 500X Meadows
+Bus 500X Grant MacEwan University
+Bus 501 Davies
+Bus 501 Capilano
+Bus 502 Davies
+Bus 502 South Campus
+Bus 503 Davies
+Bus 503 Millbourne/Woodvale
+Bus 504 Davies
+Bus 504 Meadows
+Bus 505 Davies
+Bus 505 Pylypow
+Bus 506 Davies
+Bus 506 Maple
+Bus 507 Tamarack
+Bus 507 Southgate
+Bus 508 Meadows
+Bus 508 Millbourne
+Bus 509 Mill Woods
+Bus 509 Mill Woods Road
+Bus 511 Downtown
+Bus 511 Mill Woods
+Bus 512 Mill Woods
+Bus 512 South Edmonton Common
+Bus 513 Mill Woods
+Bus 513 Knottwood
+Bus 514 Mill Woods
+Bus 514 Millhurst
+Bus 515 Mill Woods
+Bus 515 Meadows
+Bus 516 Mill Woods
+Bus 516 Meadows
+Bus 517 Mill Woods
+Bus 517 Southwood
+Bus 518 Mill Woods
+Bus 518 Century Park
+Bus 519 Mill Woods
+Bus 519 Century Park
+Bus 521 Mill Woods
+Bus 521 Century Park
+Bus 522 Capilano
+Bus 522 Bonnie Doon
+Bus 523 Mill Woods
+Bus 523 Downtown
+Bus 524 Bonnie Doon
+Bus 524 Holyrood
+Bus 525 Bonnie Doon
+Bus 525 Ritchie
+Bus 526 Mill Woods
+Bus 526 Millbourne
+Bus 589 Coliseum
+Bus 589 Edmonton Waste Management Centre
+Bus 900X Lewis Farms
+Bus 900X Downtown
+Bus 901 Jasper Place
+Bus 901 Downtown
+Bus 902 NAIT
+Bus 902 University
+Bus 903 Jasper Place
+Bus 903 Kingsway
+Bus 904 West Edmonton Mall
+Bus 904 Westmount
+Bus 905 Northgate
+Bus 905 Westmount
+Bus 906 West Edmonton Mall
+Bus 906 Westmount
+Bus 907 West Edmonton Mall
+Bus 907 Westmount
+Bus 908 Jasper Place
+Bus 908 Westmount
+Bus 909 Jasper Place
+Bus 909 Westmount
+Bus 910X Callingwood
+Bus 910X South Campus
+Bus 912 Lewis Farms
+Bus 912 Jasper Place
+Bus 913 West Edmonton Mall
+Bus 913 Jamieson Place
+Bus 914 West Edmonton Mall
+Bus 914 Jasper Place
+Bus 915 West Edmonton Mall
+Bus 915 Jasper Place
+Bus 916 West Edmonton Mall
+Bus 916 Lewis Farms
+Bus 917 West Edmonton Mall
+Bus 917 Lewis Farms
+Bus 918 West Edmonton Mall
+Bus 918 Lessard
+Bus 919 Lewis Farms
+Bus 919 Secord
+Bus 920X Lewis Farms
+Bus 920X University
+Bus 921 Jasper Place
+Bus 921 Westview
+Bus 922 Lewis Farms
+Bus 922 Rosenthal
+Bus 923 West Edmonton Mall
+Bus 923 Oleskiw
+Bus 924 Jasper Place
+Bus 924 Rio Terrace
+Bus 925 West Edmonton Mall
+Bus 925 Jasper Place
+Bus 930X Hamptons
+Bus 930X South Campus
+Train Capital Line Century Park
+Train Capital Line Clareview
+Train Metro Line NAIT
+Train Metro Line Health Sciences
+Train Valley Line Mill Woods
+Train Valley Line 102 Street

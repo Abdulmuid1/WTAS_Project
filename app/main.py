@@ -1,35 +1,51 @@
 # Import FastAPI to buid the web API
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 # Import the function checking for delays
-from app.services.alerts import get_current_delays
+from app.services.alerts import get_current_delays, check_delay
 from app.api import routes
-from dotenv import load_dotenv
-import os
-
+from app.core.config import settings
+from app.utilities.helper import update_delays_periodically
+import threading # Make infinite background tasks run in a seperate thread
 import logging
+from contextlib import asynccontextmanager  
 
-load_dotenv() 
-# Set default port to 8000
-port = int(os.getenv("PORT", 8000))
+# Define the lifespan function 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Lifespan event to start background updater when app launches.
+    """
+    updater_thread = threading.Thread(target=update_delays_periodically, args=(), daemon=True)
+    updater_thread.start()
+
+    yield  # Keeps the app running after startup
+
 
 # Create a FastAPI app object
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
+# Include API routes from app/api/routes.py
 app.include_router(routes.router)
+
+# Get the port from the environment settings
+port = settings.PORT
 
 
 @app.get("/")
 def read_root():
-    # This route handles the default home URL and returns a welcome message
+    """
+    Root route returning a welcome message.
+    """
     return {"message": "Welcome to the Winter Transit Alert System"}
 
-# Debug health check issues 
-@app.get("/health")
+@app.get("/health") # Health check route to help ALB validate the service
 def health_check():
+    """
+    Health check endpoint
+    """
     return {"status": "ok"}
 
-# Define a route the browser can visit to get the delay info
-@app.get("/delays")
+@app.get("/delays") # Route to get the real-time delay info
 def get_delay_info():
     """
     Endpoint for retrieving simulated delay information.
@@ -40,20 +56,29 @@ def get_delay_info():
         "data": get_current_delays()
     }
 
-@app.post("/sms")
+@app.post("/sms") # Route to simulate sending SMS alerts
 def send_sms():
+    """
+    Endpoint for simulating sending SMS alerts about delays
+    """
     delays = get_current_delays()
     for delay in delays:
-        logging.info(f"Sending SMS: Delay on {delay._route} at {delay._station}: {delay._delay_minutes} minutes late")
+        delay_status = check_delay(delay)
+        if delay_status["status"] == "delayed":
+           logging.info(f"Sending SMS: Delay on {delay._route} at {delay._station}: {delay._delay_minutes} minutes late")
     return {"message": "SMS alerts sent successfully"}    
 
-@app.post("/speaker")
+@app.post("/speaker") # Route to simulate speaker announcements
 def speaker_announcement():
+    """
+    Endpoint for simulating speaker announcements about delays
+    """
     delays = get_current_delays()
     for delay in delays:
-        logging.info(f"Speaker Announcement: Attention! {delay._route} is delayed at {delay._station} by {delay._delay_minutes} minutes due to {delay._reason}.")
-    return {"message": "Speaker announcements triggered successfully."}
-
+        delay_status = check_delay(delay)
+        if delay_status["status"] == "delayed":
+           logging.info(f"Speaker Announcement: Attention! {delay._route} is delayed at {delay._station} by {delay._delay_minutes} minutes due to {delay._reason}.")
+    return {"message": "Speaker announcements triggered successfully"}
 
 # Temporary function to test .env setup
 # @app.get("/env-check")
@@ -67,7 +92,7 @@ def speaker_announcement():
 #     """
 #     Endpoint to return a list of mocked transit delays.
 #     """
-#     # Create sample DelayInfo objects (you can later replace this with real data logic)
+#     # Create sample DelayInfo objects
 #     delay1 = DelayInfo("Route 15", "Southgate Station", "Heavy snow", "08:30", 12)
 #     delay2 = DelayInfo("Route 30", "Century Park", "Mechanical issue", "09:15", 8)
 
