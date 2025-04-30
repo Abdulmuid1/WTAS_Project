@@ -23,6 +23,7 @@ Bus 51 University
 Bus 52 West Edmonton Mall
 Bus 52 Northgate
 Bus 53 Clareview
+Train Metro Line Health Sciences
 Bus 53 Mill Woods
 Bus 54 West Edmonton Mall
 Bus 54 Clareview
@@ -64,6 +65,7 @@ Bus 118 Eaux Claires
 Bus 118 Clareview
 Bus 119 Eaux Claires
 Bus 119 Clareview
+Train Metro Line NAIT
 Bus 120X Eaux Claires
 Bus 120X Government Centre
 Bus 121 Clareview
@@ -91,6 +93,7 @@ Bus 500X Grant MacEwan University
 Bus 501 Davies
 Bus 501 Capilano
 Bus 502 Davies
+Train Capital Line Century Park
 Bus 502 South Campus
 Bus 503 Davies
 Bus 503 Millbourne/Woodvale
@@ -117,6 +120,7 @@ Bus 514 Millhurst
 Bus 515 Mill Woods
 Bus 515 Meadows
 Bus 516 Mill Woods
+Train Capital Line Clareview
 Bus 516 Meadows
 Bus 517 Mill Woods
 Bus 517 Southwood
@@ -180,6 +184,7 @@ Bus 920X Lewis Farms
 Bus 920X University
 Bus 921 Jasper Place
 Bus 921 Westview
+Train Valley Line Mill Woods
 Bus 922 Lewis Farms
 Bus 922 Rosenthal
 Bus 923 West Edmonton Mall
@@ -190,9 +195,4 @@ Bus 925 West Edmonton Mall
 Bus 925 Jasper Place
 Bus 930X Hamptons
 Bus 930X South Campus
-Train Capital Line Century Park
-Train Capital Line Clareview
-Train Metro Line NAIT
-Train Metro Line Health Sciences
-Train Valley Line Mill Woods
 Train Valley Line 102 Street

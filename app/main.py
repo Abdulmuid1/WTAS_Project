@@ -1,5 +1,5 @@
 # Import FastAPI to buid the web API
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI
 # Import the function checking for delays
 from app.services.alerts import get_current_delays, check_delay
 from app.api import routes
@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
 
 
 # Create a FastAPI app object
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan) 
 
 # Include API routes from app/api/routes.py
 app.include_router(routes.router)

@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timedelta
 import random
 from app.models.transit import DelayInfo
 
@@ -23,27 +24,44 @@ def load_routes():
 
 def extract_stations(routes):
     """
-    Extract station names from the routes.txt.
+    Extract station names from routes.txt and return them paired with their full route line.
+    Returns: 
+        A list of tuples where each tuple contains:
+        - the full route string (e.g., "Bus 53 Mill Woods")
+        - the extracted station name (e.g., "Mill Woods")
     """
-    stations = [] # Create an empty list for stations
-    for route in routes: # Loop over each line extracted from routes.txt
-        parts = route.strip().split()
+    paired_data = []  # Will hold tuples of (route, station)
+    index = 0
+    while index < len(routes): # Loop through all the routes
+        route = routes[index]  # Get the current route line as a string
+        parts = route.strip().split()  # Split the route into separate words
+
         if not parts:
+             # If the route line is empty, skip it and go to the next one
+            index += 1
             continue
 
-        if parts[0] == "Bus" and len(parts) >= 3: # Extract the station name
-            station = parts[2]
-            for word in parts[3:]:
-                station = station + " " + word
-            stations.append(station)
+        # If the route is a Bus and has enough words
+        if parts[0] == "Bus" and len(parts) >= 3:
+            station = parts[2] # Start with the third word as the station
+            word_index = 3
+            while word_index < len(parts): # Add any remaining words to the station
+                station = station + " " + parts[word_index] 
+                word_index += 1
+            paired_data.append((route, station)) # Save the route and station as a tuple
 
-        elif parts[0] == "Train" and len(parts) >= 4: #Extract the station name
-            station = parts[3]
-            for word in parts[4:]:
-                station = station + " " + word
-            stations.append(station) # Append extracted station names to stations list
+        # If the route is a Train and has enough words
+        elif parts[0] == "Train" and len(parts) >= 4:
+            station = parts[3] # Start with the fourth word as station
+            word_index = 4
+            while word_index < len(parts): # Add any remaining words to the station
+                station = station + " " + parts[word_index]
+                word_index += 1
+            paired_data.append((route, station)) # Save the route and station as a tuple
 
-    return stations
+        index += 1 # Move to the next route in the list
+
+    return paired_data # Return the final list of (route, station) pairs
 
 def update_delays_periodically(refresh_interval=60):
     """
@@ -54,27 +72,48 @@ def update_delays_periodically(refresh_interval=60):
     during the lifetime of the application.
     """
     possible_routes = load_routes()
-    possible_stations = extract_stations(possible_routes)
-    possible_reasons = ["Heavy snow", "Mechanical issue", "Traffic jam", "Signal failure", "Emergency maintenance"]
+    route_station_pairs = extract_stations(possible_routes)
+    # Possible delay reasons for buses
+    bus_reasons = ["Heavy snow", "Mechanical issue", "Traffic jam", "Emergency maintenance"]
+    # Possible delay reasons for trains
+    train_reasons = ["Signal failure", "Track obstruction", "Power outage", "Emergency maintenance", "Frozen switches"]
 
     # Use an infinite loop that runs forever to simulate live real-time updates
     while True:
         current_delays.clear() # Clear out old delays prior to updating delays
 
-        if not possible_routes:
+        if not route_station_pairs:
             print("No routes available")
             time.sleep(refresh_interval)
             continue
 
         # Pick 3-5 random delays each cycle
         for _ in range(random.randint(3, 5)):
-            route = random.choice(possible_routes)
-            station = random.choice(possible_stations)
-            reason = random.choice(possible_reasons)
-            expected_arrival = time.strftime("%H:%M")
-            delay_minutes = random.randint(5, 20)
+            selected = random.choice(route_station_pairs)
+            route = selected[0]
+            station = selected[1]
 
-            delay = DelayInfo(route, station, reason, expected_arrival, delay_minutes)
+            # Determine if the selected route is a bus or train route to simulate specific delays
+            if route.startswith("Bus"):
+                reason = random.choice(bus_reasons)
+            else:
+                reason = random.choice(train_reasons)
+                
+
+            # Simulate a scheduled arrival time between 5 and 30 minutes from now
+            scheduled_arrival_time = datetime.now() + timedelta(minutes=random.randint(5, 30)) 
+            # Convert to readable format (e.g., "12:40")
+            scheduled_arrival = scheduled_arrival_time.strftime("%H:%M")
+
+            delay_minutes = random.randint(5, 20) # Simulate a delay between 5 and 20 minutes
+
+            # Calculate the new expected arrival time after applying the delay
+            expected_arrival_time = scheduled_arrival_time + timedelta(minutes=delay_minutes)
+            expected_arrival = expected_arrival_time.strftime("%H:%M")
+
+            # Create a DelayInfo object with all the simulated data
+            delay = DelayInfo(route, station, reason, scheduled_arrival, delay_minutes, expected_arrival)
+
             current_delays.append(delay) # Append delay info to the list
 
         time.sleep(refresh_interval) # Update delays

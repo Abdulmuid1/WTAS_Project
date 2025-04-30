@@ -44,5 +44,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to ECS with Terraform') {
+            steps {
+                dir('terraform') {
+                    sh '''
+                        terraform init
+                        terraform apply -auto-approve
+                    '''
+                }
+            }
+        }
+
     }
 }
