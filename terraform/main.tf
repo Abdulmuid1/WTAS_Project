@@ -60,14 +60,14 @@ resource "aws_ecs_service" "wtas_service" {
     assign_public_ip = true
   }
 
-  load_balancer {
-    target_group_arn = aws_lb_target_group.wtas_target_group.arn
-    container_name   = "wtas-container"
-    container_port   = 8000
-  }
+  #load_balancer {
+   # target_group_arn = aws_lb_target_group.wtas_target_group.arn
+    #container_name   = "wtas-container"
+    #container_port   = 8000
+  #}
 
-  depends_on = [aws_lb_listener.wtas_listener]
-}
+  #depends_on = [aws_lb_listener.wtas_listener]
+#}
 
 
 # ECS Task Definition
