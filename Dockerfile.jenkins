@@ -29,6 +29,6 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | \
     apt-get install -y terraform
 
 # Add Jenkins user to Docker group
-RUN getent group docker || groupadd -g 0 docker && usermod -aG docker jenkins
+RUN usermod -aG docker jenkins
 
 USER jenkins
