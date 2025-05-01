@@ -67,7 +67,7 @@ resource "aws_ecs_service" "wtas_service" {
   #}
 
   #depends_on = [aws_lb_listener.wtas_listener]
-#}
+}
 
 
 # ECS Task Definition
