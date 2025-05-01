@@ -2,9 +2,17 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Install tools needed for adding the Terraform repository
+# Install tools needed for Docker, AWS CLI, Terraform
 RUN apt-get update && \
-    apt-get install -y gnupg lsb-release curl software-properties-common
+    apt-get install -y \
+    gnupg \
+    lsb-release \
+    curl \
+    ca-certificates \
+    software-properties-common \
+    docker.io \
+    unzip
+
 
 # Install Terraform
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | \
@@ -14,7 +22,7 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | \
     apt-get update && \
     apt-get install -y terraform
 
-# Create and add Jenkins user to Docker group
-RUN groupadd docker && usermod -aG docker jenkins
+# Add Jenkins user to Docker group
+RUN usermod -aG docker jenkins
 
 USER jenkins
