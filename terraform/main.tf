@@ -60,13 +60,13 @@ resource "aws_ecs_service" "wtas_service" {
     assign_public_ip = true
   }
 
-  #load_balancer {
-   # target_group_arn = aws_lb_target_group.wtas_target_group.arn
-    #container_name   = "wtas-container"
-    #container_port   = 8000
-  #}
+  load_balancer {
+    target_group_arn = aws_lb_target_group.wtas_target_group.arn
+    container_name   = "wtas-container"
+    container_port   = 8000
+  }
 
-  #depends_on = [aws_lb_listener.wtas_listener]
+  depends_on = [aws_lb_listener.wtas_listener]
 }
 
 
@@ -183,55 +183,55 @@ resource "aws_security_group" "wtas_ecs_sg" {
   }
 }
 
-#resource "aws_lb" "wtas_lb" {
- # name               = "wtas-lb"
-  #internal           = false
-  #load_balancer_type = "application"
-  #security_groups   = [aws_security_group.wtas_lb_sg.id]
-  #subnets            = [
-   # aws_subnet.public_a.id,
-    #aws_subnet.public_b.id
-  #]  
+resource "aws_lb" "wtas_lb" {
+  name               = "wtas-lb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups   = [aws_security_group.wtas_lb_sg.id]
+  subnets            = [
+    aws_subnet.public_a.id,
+    aws_subnet.public_b.id
+  ]  
 
-  #enable_deletion_protection = false
-  #enable_http2 = true
-  #idle_timeout             = 60
-  #tags = {
-   # Name = "wtas-lb"
-  #}
-#}
+  enable_deletion_protection = false
+  enable_http2 = true
+  idle_timeout             = 60
+  tags = {
+    Name = "wtas-lb"
+  }
+}
 
-#resource "aws_lb_target_group" "wtas_target_group" {
- # name     = "wtas-target-group"
- # port     = 8000      # The port the load balancer uses to forward requests to the container
- # protocol = "HTTP"
- # vpc_id   = aws_vpc.main.id
+resource "aws_lb_target_group" "wtas_target_group" {
+  name     = "wtas-target-group"
+  port     = 8000      # The port the load balancer uses to forward requests to the container
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
 
-  #target_type = "ip"      # awsvpc uses IP addresses
+  target_type = "ip"      # awsvpc uses IP addresses
 
-  #health_check {
-   # path                = "/health"
-   # port                = "8000"
-    #interval            = 30
-   # timeout             = 10
-   # healthy_threshold   = 2
-    #unhealthy_threshold = 5
-   # matcher             = "200-499"
- # }
-#}
+  health_check {
+    path                = "/health"
+    port                = "8000"
+    interval            = 30
+    timeout             = 10
+    healthy_threshold   = 2
+    unhealthy_threshold = 5
+    matcher             = "200-499"
+  }
+}
 
-#resource "aws_lb_listener" "wtas_listener" {
- # load_balancer_arn = aws_lb.wtas_lb.arn
-  #port              = 80 # The port traffic uses to reach the load balancer
-  #protocol          = "HTTP"
+resource "aws_lb_listener" "wtas_listener" {
+  load_balancer_arn = aws_lb.wtas_lb.arn
+  port              = 80 # The port traffic uses to reach the load balancer
+  protocol          = "HTTP"
 
-  #default_action {
-   # type             = "forward"
-    #target_group_arn = aws_lb_target_group.wtas_target_group.arn
-  #}
-  #depends_on = [aws_lb_target_group.wtas_target_group]
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.wtas_target_group.arn
+  }
+  depends_on = [aws_lb_target_group.wtas_target_group]
 
-#}
+}
 
 resource "aws_internet_gateway" "wtas_igw" {
   vpc_id = aws_vpc.main.id
