@@ -45,7 +45,7 @@ resource "aws_ecs_service" "wtas_service" {
   name            = "wtas-service"
   cluster         = aws_ecs_cluster.wtas_cluster.id
   task_definition = aws_ecs_task_definition.wtas_task.arn
-  desired_count   = 1
+  desired_count   = 0
   launch_type     = "FARGATE"
   
   # Allow ECS to restart the service and pick up the latest ECR image
