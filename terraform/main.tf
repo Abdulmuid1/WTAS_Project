@@ -52,7 +52,7 @@ resource "aws_ecs_service" "wtas_service" {
   force_new_deployment = true
 
   # Make AWS wait longer before starting health checks
-  health_check_grace_period_seconds = 120
+  health_check_grace_period_seconds = 60
 
   network_configuration {
     subnets          = [aws_subnet.public_a.id, aws_subnet.public_b.id]
