@@ -17,11 +17,11 @@ class DelayInfo():
         Converts the object's attributes into a dictionary
         """
         result = {}
-        result["Bus"] = self._route
+        result["Route"] = self._route
         result["Destination"] = self._station
         result["Reason"] = self._reason
         result["Scheduled arrival"] = self._scheduled_arrival
-        result["Delay time"] = f"{self._delay_minutes} minutes"
+        result["Delay time"] = self._delay_minutes
         result["Expected arrival"] = self._expected_arrival
         return result
 

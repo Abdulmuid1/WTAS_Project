@@ -12,7 +12,7 @@ def read_delays():
     data = []
 
     for delay in delays:
-        data.append(delay.to_dict()) # Convert to dictionary and add it to the list
+        data.append(delay) # Append it to the list
 
     return {
         "status": "ok", # Let API caller know it worked

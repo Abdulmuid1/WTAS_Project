@@ -74,12 +74,16 @@ def update_delays_periodically(refresh_interval=60):
     possible_routes = load_routes()
     route_station_pairs = extract_stations(possible_routes)
     # Possible delay reasons for buses
-    bus_reasons = ["Heavy snow", "Mechanical issue", "Traffic jam", "Emergency maintenance"]
+    bus_reasons = ["a heavy snow", "a mechanical issue", "a traffic jam", "an emergency maintenance"]
     # Possible delay reasons for trains
-    train_reasons = ["Signal failure", "Track obstruction", "Power outage", "Emergency maintenance", "Frozen switches"]
+    train_reasons = ["a signal failure", "a track obstruction", "a power outage", "an emergency maintenance", "some frozen switches"]
 
     # Use an infinite loop that runs forever to simulate live real-time updates
     while True:
+
+       # This is for debugging
+       # print("Updating delays...")  
+
         current_delays.clear() # Clear out old delays prior to updating delays
 
         if not route_station_pairs:
@@ -115,5 +119,9 @@ def update_delays_periodically(refresh_interval=60):
             delay = DelayInfo(route, station, reason, scheduled_arrival, delay_minutes, expected_arrival)
 
             current_delays.append(delay) # Append delay info to the list
+
+            # This print statement is for debugging
+            # print(f"{delay._route} to {delay._station} delayed by {delay._delay_minutes} minutes")
+
 
         time.sleep(refresh_interval) # Update delays

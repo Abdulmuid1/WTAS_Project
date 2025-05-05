@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta # Get current time
 import logging
+from app.models.transit import *
 from app.utilities.helper import current_delays
 
 # Configure logging
@@ -14,12 +14,13 @@ def get_current_delays():
     Return the current list of simulated transit delays.
     Each delay is represented as a DelayInfo object.
     """
-    
-    return current_delays
-
+    result = []  # Create an empty list to hold the delay dictionaries
+    for delay in current_delays:  # Loop through each actual delay
+        result.append(delay.to_dict())  # Convert to dict and add to result
+    return result
 
 def check_delay(info, threshold=5):
-    '''
+    """
     Check if the delay stored in the DelayInfo object exceeds the threshold.
     
     Parameters:
@@ -28,13 +29,13 @@ def check_delay(info, threshold=5):
     
     Returns:
     - dict: A dictionary showing delay status and how many minutes late
-    '''
-    
-    if info._delay_minutes > threshold:
-        logging.info(f"Delay detected for route {info._route}: {info._delay_minutes} minutes")
+    """
+     
+    if int(info["Delay time"]) > threshold:   
+        logging.info(f"Delay detected for route {info['Route']}: {info['Delay time']} minutes")
         return {
             "status": "delayed",
-            "minutes_late": int(info._delay_minutes)
+            "minutes_late": int(info["Delay time"]) 
         }
     else:
         return {
