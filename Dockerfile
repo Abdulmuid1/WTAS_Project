@@ -7,6 +7,9 @@ WORKDIR /app
 # 3. Copy project files into the container
 COPY . .
 
+# Copy built React static files
+COPY ./client/build ./client/build
+
 # 4. Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
