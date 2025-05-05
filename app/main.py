@@ -1,6 +1,8 @@
 # Import FastAPI to buid the web API
 from fastapi import FastAPI
 # Import the function checking for delays
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 from app.services.alerts import get_current_delays, check_delay
 from app.api import routes
 from app.core.config import settings
@@ -8,6 +10,10 @@ from app.utilities.helper import update_delays_periodically
 import threading # Make infinite background tasks run in a seperate thread
 import logging
 from contextlib import asynccontextmanager  
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 # Define the lifespan function 
 @asynccontextmanager
@@ -24,6 +30,14 @@ async def lifespan(app: FastAPI):
 # Create a FastAPI app object
 app = FastAPI(lifespan=lifespan) 
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # React frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Include API routes from app/api/routes.py
 app.include_router(routes.router)
 
@@ -31,12 +45,13 @@ app.include_router(routes.router)
 port = settings.PORT
 
 
-@app.get("/")
-def read_root():
-    """
-    Root route returning a welcome message.
-    """
-    return {"message": "Welcome to the Winter Transit Alert System"}
+app.mount("/static", StaticFiles(directory="client/build", html=True), name="static")
+
+@app.get("/", response_class=HTMLResponse)
+def serve_react():
+    with open("client/build/index.html") as f:
+        return f.read()
+
 
 @app.get("/health") # Health check route to help ALB validate the service
 def health_check():
@@ -62,11 +77,19 @@ def send_sms():
     Endpoint for simulating sending SMS alerts about delays
     """
     delays = get_current_delays()
+    delay_list = []
     for delay in delays:
         delay_status = check_delay(delay)
         if delay_status["status"] == "delayed":
-           logging.info(f"Sending SMS: Delay on {delay._route} at {delay._station}: {delay._delay_minutes} minutes late")
-    return {"message": "SMS alerts sent successfully"}    
+            message = {
+                f"{delay['Route']} to {delay['Destination']} encountered an unexpected delay, "
+                f"and will be {delay['Delay time']} minutes late. Scheduled arrival time: {delay['Scheduled arrival']}, "
+                f"New arrival time: {delay['Expected arrival']}. "
+                f"We apologize for any inconvenience caused."
+            }
+            delay_list.append({"type": "SMS", "message": message})
+            logging.info(f"Sending SMS: {message}")
+    return {"data": delay_list}  
 
 @app.post("/speaker") # Route to simulate speaker announcements
 def speaker_announcement():
@@ -74,11 +97,19 @@ def speaker_announcement():
     Endpoint for simulating speaker announcements about delays
     """
     delays = get_current_delays()
+    delay_list = []
     for delay in delays:
         delay_status = check_delay(delay)
         if delay_status["status"] == "delayed":
-           logging.info(f"Speaker Announcement: Attention! {delay._route} is delayed at {delay._station} by {delay._delay_minutes} minutes due to {delay._reason}.")
-    return {"message": "Speaker announcements triggered successfully"}
+            message = {
+                f"Attention! {delay['Route']} to {delay['Destination']} is delayed by "
+                f"{delay['Delay time']} minutes due to {delay['Reason']}. "
+                f"Scheduled arrival time: {delay['Scheduled arrival']}, New arrival time: {delay['Expected arrival']}. "
+                f"We apologize for any inconvenience caused."
+            }
+            delay_list.append({"type": "Speaker", "message": message})
+            logging.info(f"Speaker Announcement: {message}")
+    return {"data": delay_list}
 
 # Temporary function to test .env setup
 # @app.get("/env-check")
