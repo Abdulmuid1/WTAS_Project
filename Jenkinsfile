@@ -7,10 +7,15 @@ pipeline {
         IMAGE_TAG = 'latest'
         AWS_ACCOUNT_ID = '643989280406'
     }
-    
 
     stages {
         stage('Build React Frontend') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
             steps {
                 dir('client') {
                     sh 'npm install'
@@ -18,7 +23,6 @@ pipeline {
                 }
             }
         }
-
 
         stage('Build Docker Image') {
             steps {
@@ -40,7 +44,6 @@ pipeline {
                         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
                         aws configure set region $AWS_REGION
 
-                        # Login to ECR
                         aws ecr get-login-password | docker login --username AWS --password-stdin https://$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
                     '''
                 }
