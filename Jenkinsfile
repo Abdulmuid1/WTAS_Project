@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                echo "🔧 Building Docker image..."
+                echo "Building Docker image..."
                 sh 'docker build -t $ECR_REPO:$IMAGE_TAG .'
             }
         }
@@ -23,7 +23,7 @@ pipeline {
                     usernameVariable: 'AWS_ACCESS_KEY_ID',
                     passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
-                    echo "🔐 Logging into AWS ECR..."
+                    echo "Logging into AWS ECR..."
                     sh '''
                         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
                         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
@@ -38,7 +38,7 @@ pipeline {
 
         stage('Tag & Push Docker Image') {
             steps {
-                echo "📦 Tagging and pushing Docker image to ECR..."
+                echo "Tagging and pushing Docker image to ECR..."
                 script {
                     def repoUrl = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}"
                     sh """
@@ -51,7 +51,7 @@ pipeline {
 
         stage('Deploy to ECS with Terraform') {
             steps {
-                echo "🚀 Deploying to ECS using Terraform..."
+                echo "Deploying to ECS using Terraform..."
                 dir('terraform') {
                     sh '''
                         terraform init
@@ -64,10 +64,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Deployment to ECS was successful!'
+            echo 'Deployment to ECS was successful!'
         }
         failure {
-            echo '❌ Deployment failed. Please check the logs.'
+            echo 'Deployment failed. Please check the logs.'
         }
     }
 }
