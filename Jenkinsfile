@@ -7,8 +7,19 @@ pipeline {
         IMAGE_TAG = 'latest'
         AWS_ACCOUNT_ID = '643989280406'
     }
+    
 
     stages {
+        stage('Build React Frontend') {
+            steps {
+                dir('client') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+
+
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image..."
