@@ -12,8 +12,14 @@ pipeline {
         stage('Build React Frontend using Node container') {
             steps {
                 dir ('client') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                echo 'Building React frontend in Node container...'
+                sh '''
+                    docker run --rm \
+                        -v $PWD:/app \
+                        -w /app \
+                        node:18-alpine \
+                        sh -c "npm install && npm run build"
+                '''
                 }
             }
         }
