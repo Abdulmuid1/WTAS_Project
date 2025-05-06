@@ -195,7 +195,7 @@ resource "aws_lb" "wtas_lb" {
 
   lifecycle {
     prevent_destroy = true   # Protects the Load Balancer from being destroyed
-    ignore_changes  = [name] # Ignore modifications
+    ignore_changes  = [name, subnets, security_groups] # Ignore modifications
   }
 
   enable_deletion_protection = true  # prevent accidental UI deletion
