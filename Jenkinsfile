@@ -16,10 +16,12 @@ pipeline {
             steps {
                 dir('client') {
                     script {
-                        docker.image('node:18-alpine').inside('--user root -w /app') { // Run as root
+                        docker.image('node:18-slim').inside('--user root -w /app') { // Run as root
                             sh 'mkdir -p /app && chmod -R 777 /app' // Ensure permissions
                             sh 'cp -r . /app'
-                            sh 'cd /app && npm install'
+                            retry(2) {
+                                sh 'cd /app && npm install --verbose'
+                            }
                             sh 'cd /app && NODE_OPTIONS=--openssl-legacy-provider npm run build'
                         }
                     }
