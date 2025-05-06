@@ -30,6 +30,7 @@ pipeline {
                                 '''
                             }
                             sh 'cd /app && NODE_OPTIONS=--openssl-legacy-provider npm run build'
+                            sh 'cp -r /app/build ./build' // copy from container to Jenkins workspace
                         }
                     }
                 }
