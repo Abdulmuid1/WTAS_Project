@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build React Frontend using Node container') {
             options {
-                timeout(time: 5, unit: 'MINUTES')
+                timeout(time: 15, unit: 'MINUTES')
             }
             steps {
                 dir('client') {
