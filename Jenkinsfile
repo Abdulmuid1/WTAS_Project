@@ -13,7 +13,8 @@ pipeline {
             steps {
                 dir('client') {
                     script {
-                        docker.image('node:18-alpine').inside('-w /app') {
+                        docker.image('node:18-alpine').inside('--user root -w /app') { // Run as root
+                            sh 'mkdir -p /app && chmod -R 777 /app' // Ensure permissions
                             sh 'cp -r . /app'
                             sh 'cd /app && npm install'
                             sh 'cd /app && npm run build'
