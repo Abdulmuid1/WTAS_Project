@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build React Frontend using Node container') {
             options {
-                timeout(time: 15, unit: 'MINUTES')
+                timeout(time: 25, unit: 'MINUTES')  // Longer timeout
             }
             steps {
                 dir('client') {
@@ -20,7 +20,14 @@ pipeline {
                             sh 'mkdir -p /app && chmod -R 777 /app' // Ensure permissions
                             sh 'cp -r . /app'
                             retry(2) {
-                                sh 'cd /app && npm install --verbose'
+                                sh '''
+                                    npm config set registry https://registry.npmjs.org/
+                                    npm config set fetch-retries 5
+                                    npm config set fetch-retry-mintimeout 20000
+                                    npm config set fetch-retry-maxtimeout 120000
+                                    npm cache clean --force
+                                    cd /app && npm install --no-audit --verbose
+                                '''
                             }
                             sh 'cd /app && NODE_OPTIONS=--openssl-legacy-provider npm run build'
                         }
@@ -28,6 +35,7 @@ pipeline {
                 }
             }
         }
+
 
 
         stage('Build Docker Image') {
