@@ -17,7 +17,7 @@ pipeline {
                             sh 'mkdir -p /app && chmod -R 777 /app' // Ensure permissions
                             sh 'cp -r . /app'
                             sh 'cd /app && npm install'
-                            sh 'cd /app && npm run build'
+                            sh 'cd /app && NODE_OPTIONS=--openssl-legacy-provider npm run build'
                         }
                     }
                 }
