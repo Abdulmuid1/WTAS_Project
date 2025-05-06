@@ -16,7 +16,7 @@ function SpeakerAnnouncements() {
 
   return (
     <div style={{ padding: "20px", textAlign: "left", color: "white" }}>
-      <h2>📢 Speaker Announcements</h2>
+      <h2><span role="img" aria-label="speaker">📢</span> Speaker Announcements</h2>
       {delays.length === 0 ? (
         <p>No delays at the moment</p>
       ) : (

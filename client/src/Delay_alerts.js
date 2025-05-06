@@ -21,7 +21,7 @@ function DelayAlerts() {
 
   return (
     <div style={{ padding: "20px", textAlign: "left", color: "white" }}>
-      <h2>🧊 Live Delay Alerts</h2>
+      <h2><span role="img" aria-label="live-alerts">🧊</span> Live Delay Alerts</h2>
       {hasDelays ? (
         <ul>
           <li><strong>ALERT!</strong></li>

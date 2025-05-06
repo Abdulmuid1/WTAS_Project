@@ -16,7 +16,7 @@ function SmsAlerts() {
 
   return (
     <div style={{ padding: "20px", textAlign: "left", color: "white" }}>
-      <h2>📲 Sms Delay Alerts</h2>
+      <h2><span role="img" aria-label="sms">📲</span> Sms Delay Alerts</h2>
       {delays.length === 0 ? (
         <p>No delays at the moment</p>
       ) : (
