@@ -193,7 +193,11 @@ resource "aws_lb" "wtas_lb" {
     aws_subnet.public_b.id
   ]  
 
-  enable_deletion_protection = false
+  lifecycle {
+    prevent_destroy = true   # Keep the load balancer so the DNS stays the same
+  }
+
+  enable_deletion_protection = true  # prevent accidental UI deletion
   enable_http2 = true
   idle_timeout             = 60
   tags = {
