@@ -2,7 +2,6 @@
 from fastapi import FastAPI
 # Import the function checking for delays
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
 from app.services.alerts import get_current_delays, check_delay
 from app.api import routes
 from app.core.config import settings
@@ -45,13 +44,7 @@ app.include_router(routes.router)
 port = settings.PORT
 
 
-app.mount("/static", StaticFiles(directory="client/build", html=True), name="static")
-
-@app.get("/", response_class=HTMLResponse)
-def serve_react():
-    with open("client/build/index.html") as f:
-        return f.read()
-
+app.mount("/", StaticFiles(directory="client/build", html=True), name="static")
 
 @app.get("/health") # Health check route to help ALB validate the service
 def health_check():
