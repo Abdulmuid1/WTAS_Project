@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Copy built React static files
-COPY ./build ./client/build
+COPY ./client/build ./client/build
 
 # 4. Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
