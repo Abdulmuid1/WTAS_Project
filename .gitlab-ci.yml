@@ -9,8 +9,7 @@ variables:
   AWS_ACCOUNT_ID: "643989280406"
   DOCKER_DRIVER: overlay2
 
-before_script:
-  - echo "Using AWS region: $AWS_DEFAULT_REGION"
+before_script: "echo 'Using AWS region: $AWS_DEFAULT_REGION'"
 
 build_react:
   stage: build
