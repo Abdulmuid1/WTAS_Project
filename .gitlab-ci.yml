@@ -16,6 +16,7 @@ build_react:
   image: node:18-alpine
   script:
     - cd client
+    - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
     - npm config set registry https://registry.npmjs.org/
     - npm install --no-audit
     - NODE_OPTIONS=--openssl-legacy-provider npm run build
