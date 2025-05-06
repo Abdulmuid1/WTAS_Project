@@ -194,7 +194,8 @@ resource "aws_lb" "wtas_lb" {
   ]  
 
   lifecycle {
-    prevent_destroy = true   # Keep the load balancer so the DNS stays the same
+    prevent_destroy = true   # Protects the Load Balancer from being destroyed
+    ignore_changes  = [name] # Ignore modifications
   }
 
   enable_deletion_protection = true  # prevent accidental UI deletion
