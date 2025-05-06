@@ -10,18 +10,19 @@ pipeline {
 
     stages {
         stage('Build React Frontend using Node container') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    args '-v $WORKSPACE/client:/app -w /app'
-                    reuseNode true
+            steps {
+                dir('client') {
+                    script {
+                        docker.image('node:18-alpine').inside('-w /app') {
+                            sh 'cp -r . /app'
+                            sh 'cd /app && npm install'
+                            sh 'cd /app && npm run build'
+                        }
+                    }
                 }
             }
-            steps {
-                sh 'npm install'
-                sh 'npm run build'
-            }
         }
+
 
         stage('Build Docker Image') {
             steps {
