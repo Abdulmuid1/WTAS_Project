@@ -43,7 +43,7 @@ docker_build_push:
 
 deploy_to_aws:
   stage: deploy
-  image: hashicorp/terraform:light
+  image: hashicorp/terraform:1.5.7
   script:
     - cd terraform
     - terraform init
