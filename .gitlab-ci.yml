@@ -1,0 +1,51 @@
+stages:
+  - build
+  - dockerize
+  - deploy
+
+variables:
+  ECR_REPO: "wtas-api"
+  IMAGE_TAG: "latest"
+  AWS_ACCOUNT_ID: "643989280406"
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - echo "Using AWS region: $AWS_DEFAULT_REGION"
+
+build_react:
+  stage: build
+  image: node:18-alpine
+  script:
+    - cd client
+    - npm config set registry https://registry.npmjs.org/
+    - npm install --no-audit
+    - NODE_OPTIONS=--openssl-legacy-provider npm run build
+  artifacts:
+    paths:
+      - client/build
+
+docker_build_push:
+  stage: dockerize
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+  script:
+    - apk add --no-cache curl python3 py3-pip
+    - pip3 install awscli
+    - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+    - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+    - aws configure set region "$AWS_DEFAULT_REGION"
+    - aws ecr get-login-password | docker login --username AWS --password-stdin "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+    - docker build -t "$ECR_REPO:$IMAGE_TAG" .
+    - docker tag "$ECR_REPO:$IMAGE_TAG" "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
+    - docker push "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
+
+deploy_to_aws:
+  stage: deploy
+  image: hashicorp/terraform:light
+  script:
+    - cd terraform
+    - terraform init
+    - terraform apply -auto-approve
