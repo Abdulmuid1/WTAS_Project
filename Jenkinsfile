@@ -11,15 +11,11 @@ pipeline {
     stages {
         stage('Build React Frontend using Node container') {
             steps {
-                echo 'Building React frontend in Node container...'
-                dir ('.') {
-                  sh '''
-                    docker run --rm \
-                        -v $PWD/client:/app \
-                        -w /app \
-                        node:18-alpine \
-                        sh -c "npm install && npm run build"
-                '''
+                script {
+                    docker.image('node:18-alpine').inside("-v ${env.WORKSPACE}/client:/app -w /app", reuseNode: true) {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
                 }
             }
         }
