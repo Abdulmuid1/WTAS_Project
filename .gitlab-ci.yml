@@ -50,14 +50,17 @@ deploy_to_aws:
     entrypoint: [""]
   script:
     - cd terraform
-    # Install AWS CLI (since it's not in the Terraform image)
+    # Install AWS CLI (if it's not present in the image)
     - apk add --no-cache python3 py3-pip aws-cli
     - aws configure set region "$AWS_DEFAULT_REGION"
-    # Retrieve the load balancer ARN using AWS CLI
+    # Initialize Terraform (upgrading providers and creating state)
+    - terraform init -upgrade
+    # Retrieve the load balancer ARN
     - export LB_ARN=$(aws elbv2 describe-load-balancers --names wtas-lb --query 'LoadBalancers[0].LoadBalancerArn' --output text)
     - 'echo "Load Balancer ARN: $LB_ARN"'
-    # If the load balancer is not yet in the state, import it.
+    # If the load balancer is not yet tracked, import it
     - terraform state list | grep aws_lb.wtas_lb || terraform import aws_lb.wtas_lb "$LB_ARN" || echo "Load balancer already imported"
     - terraform apply -auto-approve
+
 
 
