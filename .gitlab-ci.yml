@@ -1,31 +1,35 @@
+# PIPELINE STAGES
 stages:
-  - build
+  - temp-build
   - dockerize
   - deploy
   - update-backend-url
+  - rebuild-final
 
+# VARIABLES
 variables:
   ECR_REPO: "wtas-api"
   IMAGE_TAG: "latest"
   AWS_ACCOUNT_ID: "643989280406"
   DOCKER_DRIVER: overlay2
-  LB_ARN: "arn:aws:elasticloadbalancing:ca-central-1:643989280406:loadbalancer/app/wtas-lb/4321f7795b172e5a"
 
 before_script: "echo 'Using AWS region: $AWS_DEFAULT_REGION'"
 
-build_react:
-  stage: build
+# TEMPORARY REACT BUILD (will be replaced later)
+build_react_temp:
+  stage: temp-build
   image: node:18-alpine
   script:
     - cd client
+    - "echo 'TEMP: React build with possibly outdated backend URL'"
     - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
-    - npm config set registry https://registry.npmjs.org/
     - npm install --no-audit
     - NODE_OPTIONS=--openssl-legacy-provider npm run build
   artifacts:
     paths:
       - client/build
 
+# DOCKERIZE BACKEND
 docker_build_push:
   stage: dockerize
   image: docker:24.0.5
@@ -44,6 +48,7 @@ docker_build_push:
     - docker tag "$ECR_REPO:$IMAGE_TAG" "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
     - docker push "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
 
+# DEPLOY WITH TERRAFORM
 deploy_to_aws:
   stage: deploy
   image: 
@@ -51,14 +56,12 @@ deploy_to_aws:
     entrypoint: [""]
   script:
     - cd terraform
-    # Install AWS CLI (since it's not in the Terraform image)
     - apk add --no-cache python3 py3-pip aws-cli
     - aws configure set region "$AWS_DEFAULT_REGION"
-    # Initialize Terraform to ensure correct dependencies
     - terraform init -upgrade
-    # Apply Terraform configuration to create the new resources, including load balancer
     - terraform apply -auto-approve
 
+# UPDATE REACT BACKEND URL (AFTER ALB DEPLOY)
 update_backend_url:
   stage: update-backend-url
   image: amazonlinux
@@ -80,3 +83,17 @@ update_backend_url:
       curl --request PUT "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/REACT_APP_BACKEND_URL" \
         --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
         --form "value=http://$lb_dns"
+
+# FINAL REACT BUILD WITH CORRECT BACKEND URL
+rebuild_react_final:
+  stage: rebuild-final
+  image: node:18-alpine
+  script:
+    - cd client
+    - echo "FINAL React build with updated backend URL"
+    - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
+    - npm install --no-audit
+    - NODE_OPTIONS=--openssl-legacy-provider npm run build
+  artifacts:
+    paths:
+      - client/build
