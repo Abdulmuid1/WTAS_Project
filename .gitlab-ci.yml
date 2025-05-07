@@ -1,12 +1,9 @@
-# PIPELINE STAGES
 stages:
-  - temp-build
-  - dockerize
-  - deploy
+  - deploy-backend
   - update-backend-url
-  - rebuild-final
+  - rebuild-react
+  - dockerize-final
 
-# VARIABLES
 variables:
   ECR_REPO: "wtas-api"
   IMAGE_TAG: "latest"
@@ -15,27 +12,63 @@ variables:
 
 before_script: "echo 'Using AWS region: $AWS_DEFAULT_REGION'"
 
-# TEMPORARY REACT BUILD (will be replaced later)
-build_react_temp:
-  stage: temp-build
+# STEP 1: Deploy Backend Infrastructure (creates ALB)
+deploy_to_aws:
+  stage: deploy-backend
+  image:
+    name: hashicorp/terraform:1.5.7
+    entrypoint: [""]
+  script:
+    - cd terraform
+    - apk add --no-cache python3 py3-pip aws-cli
+    - aws configure set region "$AWS_DEFAULT_REGION"
+    - terraform init -upgrade
+    - terraform apply -auto-approve
+
+# STEP 2: Fetch ALB DNS & Update GitLab ENV Variable
+update_backend_url:
+  stage: update-backend-url
+  image: amazonlinux
+  needs: [deploy_to_aws]
+  before_script:
+    - yum install -y curl jq unzip --allowerasing
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+  script: |
+    echo "Fetching Load Balancer DNS..."
+    lb_dns=$(aws elbv2 describe-load-balancers \
+      --names "wtas-lb" \
+      --region "$AWS_DEFAULT_REGION" \
+      | jq -r '.LoadBalancers[0].DNSName')
+    echo "Updating GitLab variable REACT_APP_BACKEND_URL to http://$lb_dns"
+    curl --request PUT "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/REACT_APP_BACKEND_URL" \
+      --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+      --form "value=http://$lb_dns"
+
+# STEP 3: Final React Build with Correct Backend URL
+rebuild_react_final:
+  stage: rebuild-react
   image: node:18-alpine
+  needs: [update_backend_url]
   script:
     - cd client
-    - "echo 'TEMP: React build with possibly outdated backend URL'"
+    - echo "FINAL React build with updated backend URL"
     - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
-    - cat .env  # Debug print to verify the value
+    - cat .env
     - npm install --no-audit
     - NODE_OPTIONS=--openssl-legacy-provider npm run build
   artifacts:
     paths:
       - client/build
 
-# DOCKERIZE BACKEND
-docker_build_push:
-  stage: dockerize
+# STEP 4: Build & Push Final Docker Image
+docker_build_push_final:
+  stage: dockerize-final
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
+  needs: [rebuild_react_final]
   variables:
     DOCKER_HOST: tcp://docker:2375/
   script:
@@ -48,54 +81,3 @@ docker_build_push:
     - docker build -t "$ECR_REPO:$IMAGE_TAG" .
     - docker tag "$ECR_REPO:$IMAGE_TAG" "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
     - docker push "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/$ECR_REPO:$IMAGE_TAG"
-
-# DEPLOY WITH TERRAFORM
-deploy_to_aws:
-  stage: deploy
-  image: 
-    name: hashicorp/terraform:1.5.7
-    entrypoint: [""]
-  script:
-    - cd terraform
-    - apk add --no-cache python3 py3-pip aws-cli
-    - aws configure set region "$AWS_DEFAULT_REGION"
-    - terraform init -upgrade
-    - terraform apply -auto-approve
-
-# UPDATE REACT BACKEND URL (AFTER ALB DEPLOY)
-update_backend_url:
-  stage: update-backend-url
-  image: amazonlinux
-  before_script:
-    - yum install -y curl jq unzip --allowerasing
-    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    - unzip awscliv2.zip
-    - ./aws/install
-  script:
-    - |
-      echo "Fetching Load Balancer DNS..."
-      lb_dns=$(aws elbv2 describe-load-balancers \
-        --names "wtas-lb" \
-        --region "$AWS_DEFAULT_REGION" \
-        | jq -r '.LoadBalancers[0].DNSName')
-
-      echo "Updating GitLab variable REACT_APP_BACKEND_URL to http://$lb_dns"
-
-      curl --request PUT "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/REACT_APP_BACKEND_URL" \
-        --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-        --form "value=http://$lb_dns"
-
-# FINAL REACT BUILD WITH CORRECT BACKEND URL
-rebuild_react_final:
-  stage: rebuild-final
-  image: node:18-alpine
-  script:
-    - cd client
-    - echo "FINAL React build with updated backend URL"
-    - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
-    - cat .env  # Debug print to verify the value
-    - npm install --no-audit
-    - NODE_OPTIONS=--openssl-legacy-provider npm run build
-  artifacts:
-    paths:
-      - client/build
