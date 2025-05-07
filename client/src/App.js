@@ -5,6 +5,8 @@ import DelayAlerts from "./Delay_alerts";  // render the DelayAlerts component
 import SpeakerAnnouncements from "./Speaker_announce"; // render the Speaker component
 import SmsAlerts from "./Sms_alerts"; // render the Sms component
 
+console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
+
 function App() {
   const [showSMS, setShowSMS] = useState(false);
   const [showSpeaker, setShowSpeaker] = useState(false);
