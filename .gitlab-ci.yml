@@ -23,6 +23,7 @@ build_react_temp:
     - cd client
     - "echo 'TEMP: React build with possibly outdated backend URL'"
     - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
+    - cat .env  # Debug print to verify the value
     - npm install --no-audit
     - NODE_OPTIONS=--openssl-legacy-provider npm run build
   artifacts:
@@ -92,6 +93,7 @@ rebuild_react_final:
     - cd client
     - echo "FINAL React build with updated backend URL"
     - echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > .env
+    - cat .env  # Debug print to verify the value
     - npm install --no-audit
     - NODE_OPTIONS=--openssl-legacy-provider npm run build
   artifacts:
