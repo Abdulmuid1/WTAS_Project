@@ -2,6 +2,7 @@ stages:
   - build
   - dockerize
   - deploy
+  - update-backend-url
 
 variables:
   ECR_REPO: "wtas-api"
@@ -57,3 +58,25 @@ deploy_to_aws:
     - terraform init -upgrade
     # Apply Terraform configuration to create the new resources, including load balancer
     - terraform apply -auto-approve
+
+update_backend_url:
+  stage: update-backend-url
+  image: amazonlinux
+  before_script:
+    - yum install -y curl jq unzip
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+  script:
+    - |
+      echo "Fetching Load Balancer DNS..."
+      lb_dns=$(aws elbv2 describe-load-balancers \
+        --names "wtas-lb" \
+        --region "$AWS_DEFAULT_REGION" \
+        | jq -r '.LoadBalancers[0].DNSName')
+
+      echo "Updating GitLab variable REACT_APP_BACKEND_URL to http://$lb_dns"
+
+      curl --request PUT "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/REACT_APP_BACKEND_URL" \
+        --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+        --form "value=http://$lb_dns"
