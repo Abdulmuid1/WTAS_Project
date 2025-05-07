@@ -8,6 +8,7 @@ variables:
   IMAGE_TAG: "latest"
   AWS_ACCOUNT_ID: "643989280406"
   DOCKER_DRIVER: overlay2
+  LB_ARN: "arn:aws:elasticloadbalancing:ca-central-1:643989280406:loadbalancer/app/wtas-lb/4321f7795b172e5a"
 
 before_script: "echo 'Using AWS region: $AWS_DEFAULT_REGION'"
 
@@ -49,5 +50,14 @@ deploy_to_aws:
     entrypoint: [""]
   script:
     - cd terraform
-    - terraform init
+    # Install AWS CLI (since it's not in the Terraform image)
+    - apk add --no-cache python3 py3-pip aws-cli
+    - aws configure set region "$AWS_DEFAULT_REGION"
+    # Retrieve the load balancer ARN using AWS CLI
+    - export LB_ARN=$(aws elbv2 describe-load-balancers --names wtas-lb --query 'LoadBalancers[0].LoadBalancerArn' --output text)
+    - 'echo "Load Balancer ARN: $LB_ARN"'
+    # If the load balancer is not yet in the state, import it.
+    - terraform state list | grep aws_lb.wtas_lb || terraform import aws_lb.wtas_lb "$LB_ARN" || echo "Load balancer already imported"
     - terraform apply -auto-approve
+
+
