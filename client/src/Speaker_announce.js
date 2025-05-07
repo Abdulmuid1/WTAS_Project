@@ -1,19 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
-function SpeakerAnnouncements() {
-  const [delays, setDelays] = useState([]);
-
-  useEffect(() => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/speaker`)  // FastAPI backend URL for speaker
-      .then(response => {
-        setDelays(response.data.data);
-      })
-      .catch(error => {
-        console.error("Error fetching delays:", error);
-      });
-  }, []);
-
+function SpeakerAnnouncements({ delays }) {
   return (
     <div style={{ padding: "20px", textAlign: "left", color: "white" }}>
       <h2><span role="img" aria-label="speaker">📢</span> Speaker Announcements</h2>
