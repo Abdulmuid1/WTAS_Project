@@ -16,19 +16,18 @@ function App() {
 
 
   const handleSendSms = () => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/sms`, {})
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/sms`, {})
       .then((response) => setSmsDelays(response.data.data))
       .catch((error) => console.error("Error sending SMS alerts:", error));
     setShowSMS(true); // show the section after clicking
   };
 
   const handleAnnounce = () => {
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/speaker`, {})
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/speaker`, {})
       .then((response) => setSpeakerDelays(response.data.data))
       .catch((error) => console.error("Error sending speaker announcements:", error));
     setShowSpeaker(true); // show the section after clicking
   };
-
 
   return (
     <div className="App">

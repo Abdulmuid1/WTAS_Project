@@ -1,5 +1,5 @@
 # Import FastAPI to buid the web API
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 # Import the function checking for delays
 from fastapi.staticfiles import StaticFiles
 from app.services.alerts import get_current_delays, check_delay
@@ -10,11 +10,9 @@ import threading # Make infinite background tasks run in a seperate thread
 import logging
 from contextlib import asynccontextmanager  
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
-
-
-
-# Define the lifespan function 
+# Define the lifespan function for the background updater 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
@@ -22,13 +20,13 @@ async def lifespan(app: FastAPI):
     """
     updater_thread = threading.Thread(target=update_delays_periodically, args=(), daemon=True)
     updater_thread.start()
-
     yield  # Keeps the app running after startup
 
 
 # Create a FastAPI app object
 app = FastAPI(lifespan=lifespan) 
 
+# CORS middleware to allow requests from your frontend domain.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # React frontend origin
@@ -37,23 +35,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API routes from app/api/routes.py
-app.include_router(routes.router)
+# Mount the router at /api
+app.include_router(routes.router, prefix="/api")
 
 # Get the port from the environment settings
 port = settings.PORT
 
+# Mount static files under a dedicated subpath "/static"
+app.mount("/static", StaticFiles(directory="client/build/static"), name="static")
 
-app.mount("/", StaticFiles(directory="client/build", html=True), name="static")
+# To support client side routing in a single-page application, serve index.html at "/"
+@app.get("/")
+async def serve_index():
+    with open(os.path.join("client", "build", "index.html"), "r") as f:
+        return Response(content=f.read(), media_type="text/html")
 
-@app.get("/health") # Health check route to help ALB validate the service
+
+@app.get("/api/health") # Health check route to help ALB validate the service
 def health_check():
     """
     Health check endpoint
     """
     return {"status": "ok"}
 
-@app.get("/delays") # Route to get the real-time delay info
+@app.get("/api/delays") # Route to get the real-time delay info
 def get_delay_info():
     """
     Endpoint for retrieving simulated delay information.
@@ -64,7 +69,7 @@ def get_delay_info():
         "data": get_current_delays()
     }
 
-@app.post("/sms") # Route to simulate sending SMS alerts
+@app.post("/api/sms") # Route to simulate sending SMS alerts
 def send_sms():
     """
     Endpoint for simulating sending SMS alerts about delays
@@ -84,7 +89,7 @@ def send_sms():
             logging.info(f"Sending SMS: {message}")
     return {"data": delay_list}  
 
-@app.post("/speaker") # Route to simulate speaker announcements
+@app.post("/api/speaker") # Route to simulate speaker announcements
 def speaker_announcement():
     """
     Endpoint for simulating speaker announcements about delays
