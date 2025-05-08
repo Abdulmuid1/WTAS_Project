@@ -1,3 +1,13 @@
+/* Global fix for mobile: ensure full dark background and visible text */
+html, body {
+  background-color: #0d1117;
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 html, body, #root {  /* Ensure full height layout */
   height: 100%;
   margin: 0;
@@ -17,7 +27,7 @@ html, body, #root {  /* Ensure full height layout */
 
 
 .App-header {
-  background-color: #0d1117;
+  background-color: #14142f8b;
   padding: 40px 20px;
   text-align: center;
   border-bottom: 1px solid #30363d;
@@ -35,7 +45,7 @@ html, body, #root {  /* Ensure full height layout */
 
 
 footer {
-  background-color: #0d1117;
+  background-color: #14142f8b;
   color: #ccc;
   text-align: center;
   padding: 15px;
