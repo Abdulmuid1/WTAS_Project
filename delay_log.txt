@@ -1830,3 +1830,83 @@
 2025-05-07 19:19:20,917 - INFO - Sending SMS: {'Bus 915 West Edmonton Mall to West Edmonton Mall encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 19:33, New arrival time: 19:41. We apologize for any inconvenience caused.'}
 2025-05-07 19:19:20,917 - INFO - Delay detected for route Bus 500X Meadows: 16 minutes
 2025-05-07 19:19:20,917 - INFO - Sending SMS: {'Bus 500X Meadows to Meadows encountered an unexpected delay, and will be 16 minutes late. Scheduled arrival time: 19:36, New arrival time: 19:52. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:06,023 - INFO - Delay detected for route Train Capital Line Clareview: 18 minutes
+2025-05-07 22:22:06,023 - INFO - Sending SMS: {'Train Capital Line Clareview to Clareview encountered an unexpected delay, and will be 18 minutes late. Scheduled arrival time: 22:39, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:06,032 - INFO - Delay detected for route Bus 55 West Edmonton Mall: 10 minutes
+2025-05-07 22:22:06,033 - INFO - Sending SMS: {'Bus 55 West Edmonton Mall to West Edmonton Mall encountered an unexpected delay, and will be 10 minutes late. Scheduled arrival time: 22:43, New arrival time: 22:53. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:06,033 - INFO - Delay detected for route Bus 912 Lewis Farms: 12 minutes
+2025-05-07 22:22:06,034 - INFO - Sending SMS: {'Bus 912 Lewis Farms to Lewis Farms encountered an unexpected delay, and will be 12 minutes late. Scheduled arrival time: 22:51, New arrival time: 23:03. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:08,435 - INFO - Delay detected for route Bus 923 Oleskiw: 12 minutes
+2025-05-07 22:22:08,436 - INFO - Speaker Announcement: {'Attention! Bus 923 Oleskiw to Oleskiw is delayed by 12 minutes due to a heavy snow. Scheduled arrival time: 22:41, New arrival time: 22:53. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:08,436 - INFO - Delay detected for route Bus 930X Hamptons: 9 minutes
+2025-05-07 22:22:08,436 - INFO - Speaker Announcement: {'Attention! Bus 930X Hamptons to Hamptons is delayed by 9 minutes due to an emergency maintenance. Scheduled arrival time: 22:29, New arrival time: 22:38. We apologize for any inconvenience caused.'}
+2025-05-07 22:22:08,436 - INFO - Delay detected for route Bus 903 Jasper Place: 15 minutes
+2025-05-07 22:22:08,436 - INFO - Speaker Announcement: {'Attention! Bus 903 Jasper Place to Jasper Place is delayed by 15 minutes due to a traffic jam. Scheduled arrival time: 22:30, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:23,653 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:23,653 - INFO - Sending SMS: {'Bus 5 Coliseum to Coliseum encountered an unexpected delay, and will be 14 minutes late. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:23,653 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:23,656 - INFO - Sending SMS: {'Bus 501 Davies to Davies encountered an unexpected delay, and will be 13 minutes late. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:23,656 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:23,658 - INFO - Sending SMS: {'Bus 120X Government Centre to Government Centre encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:27,363 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:27,363 - INFO - Speaker Announcement: {'Attention! Bus 5 Coliseum to Coliseum is delayed by 14 minutes due to a traffic jam. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:27,363 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:27,365 - INFO - Speaker Announcement: {'Attention! Bus 501 Davies to Davies is delayed by 13 minutes due to an emergency maintenance. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:27,365 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:27,365 - INFO - Speaker Announcement: {'Attention! Bus 120X Government Centre to Government Centre is delayed by 8 minutes due to an emergency maintenance. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:34,316 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:34,316 - INFO - Speaker Announcement: {'Attention! Bus 5 Coliseum to Coliseum is delayed by 14 minutes due to a traffic jam. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:34,316 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:34,316 - INFO - Speaker Announcement: {'Attention! Bus 501 Davies to Davies is delayed by 13 minutes due to an emergency maintenance. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:34,316 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:34,316 - INFO - Speaker Announcement: {'Attention! Bus 120X Government Centre to Government Centre is delayed by 8 minutes due to an emergency maintenance. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:35,619 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:35,621 - INFO - Speaker Announcement: {'Attention! Bus 5 Coliseum to Coliseum is delayed by 14 minutes due to a traffic jam. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:35,621 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:35,621 - INFO - Speaker Announcement: {'Attention! Bus 501 Davies to Davies is delayed by 13 minutes due to an emergency maintenance. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:35,621 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:35,621 - INFO - Speaker Announcement: {'Attention! Bus 120X Government Centre to Government Centre is delayed by 8 minutes due to an emergency maintenance. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:37,281 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:37,281 - INFO - Sending SMS: {'Bus 5 Coliseum to Coliseum encountered an unexpected delay, and will be 14 minutes late. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:37,281 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:37,281 - INFO - Sending SMS: {'Bus 501 Davies to Davies encountered an unexpected delay, and will be 13 minutes late. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:37,281 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:37,281 - INFO - Sending SMS: {'Bus 120X Government Centre to Government Centre encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:38,165 - INFO - Delay detected for route Bus 5 Coliseum: 14 minutes
+2025-05-07 22:24:38,167 - INFO - Sending SMS: {'Bus 5 Coliseum to Coliseum encountered an unexpected delay, and will be 14 minutes late. Scheduled arrival time: 22:43, New arrival time: 22:57. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:38,167 - INFO - Delay detected for route Bus 501 Davies: 13 minutes
+2025-05-07 22:24:38,167 - INFO - Sending SMS: {'Bus 501 Davies to Davies encountered an unexpected delay, and will be 13 minutes late. Scheduled arrival time: 22:32, New arrival time: 22:45. We apologize for any inconvenience caused.'}
+2025-05-07 22:24:38,167 - INFO - Delay detected for route Bus 120X Government Centre: 8 minutes
+2025-05-07 22:24:38,167 - INFO - Sending SMS: {'Bus 120X Government Centre to Government Centre encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 22:33, New arrival time: 22:41. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:49,265 - INFO - Delay detected for route Bus 901 Jasper Place: 17 minutes
+2025-05-07 22:25:49,265 - INFO - Sending SMS: {'Bus 901 Jasper Place to Jasper Place encountered an unexpected delay, and will be 17 minutes late. Scheduled arrival time: 22:42, New arrival time: 22:59. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:49,265 - INFO - Delay detected for route Bus 501 Capilano: 8 minutes
+2025-05-07 22:25:49,265 - INFO - Sending SMS: {'Bus 501 Capilano to Capilano encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 22:52, New arrival time: 23:00. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:49,265 - INFO - Delay detected for route Bus 110X Downtown: 13 minutes
+2025-05-07 22:25:49,265 - INFO - Sending SMS: {'Bus 110X Downtown to Downtown encountered an unexpected delay, and will be 13 minutes late. Scheduled arrival time: 22:41, New arrival time: 22:54. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:51,231 - INFO - Delay detected for route Bus 901 Jasper Place: 17 minutes
+2025-05-07 22:25:51,231 - INFO - Speaker Announcement: {'Attention! Bus 901 Jasper Place to Jasper Place is delayed by 17 minutes due to a mechanical issue. Scheduled arrival time: 22:42, New arrival time: 22:59. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:51,231 - INFO - Delay detected for route Bus 501 Capilano: 8 minutes
+2025-05-07 22:25:51,231 - INFO - Speaker Announcement: {'Attention! Bus 501 Capilano to Capilano is delayed by 8 minutes due to a heavy snow. Scheduled arrival time: 22:52, New arrival time: 23:00. We apologize for any inconvenience caused.'}
+2025-05-07 22:25:51,231 - INFO - Delay detected for route Bus 110X Downtown: 13 minutes
+2025-05-07 22:25:51,233 - INFO - Speaker Announcement: {'Attention! Bus 110X Downtown to Downtown is delayed by 13 minutes due to an emergency maintenance. Scheduled arrival time: 22:41, New arrival time: 22:54. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:23,887 - INFO - Delay detected for route Bus 131 Riverdale: 18 minutes
+2025-05-07 22:28:23,887 - INFO - Sending SMS: {'Bus 131 Riverdale to Riverdale encountered an unexpected delay, and will be 18 minutes late. Scheduled arrival time: 22:34, New arrival time: 22:52. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:23,889 - INFO - Delay detected for route Bus 906 West Edmonton Mall: 15 minutes
+2025-05-07 22:28:23,889 - INFO - Sending SMS: {'Bus 906 West Edmonton Mall to West Edmonton Mall encountered an unexpected delay, and will be 15 minutes late. Scheduled arrival time: 22:51, New arrival time: 23:06. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:23,889 - INFO - Delay detected for route Bus 920X Lewis Farms: 19 minutes
+2025-05-07 22:28:23,889 - INFO - Sending SMS: {'Bus 920X Lewis Farms to Lewis Farms encountered an unexpected delay, and will be 19 minutes late. Scheduled arrival time: 22:35, New arrival time: 22:54. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:23,889 - INFO - Delay detected for route Bus 526 Mill Woods: 6 minutes
+2025-05-07 22:28:23,889 - INFO - Sending SMS: {'Bus 526 Mill Woods to Mill Woods encountered an unexpected delay, and will be 6 minutes late. Scheduled arrival time: 22:40, New arrival time: 22:46. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:23,889 - INFO - Delay detected for route Bus 923 West Edmonton Mall: 10 minutes
+2025-05-07 22:28:23,889 - INFO - Sending SMS: {'Bus 923 West Edmonton Mall to West Edmonton Mall encountered an unexpected delay, and will be 10 minutes late. Scheduled arrival time: 22:37, New arrival time: 22:47. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:26,856 - INFO - Delay detected for route Bus 131 Riverdale: 18 minutes
+2025-05-07 22:28:26,856 - INFO - Speaker Announcement: {'Attention! Bus 131 Riverdale to Riverdale is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 22:34, New arrival time: 22:52. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:26,856 - INFO - Delay detected for route Bus 906 West Edmonton Mall: 15 minutes
+2025-05-07 22:28:26,856 - INFO - Speaker Announcement: {'Attention! Bus 906 West Edmonton Mall to West Edmonton Mall is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 22:51, New arrival time: 23:06. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:26,856 - INFO - Delay detected for route Bus 920X Lewis Farms: 19 minutes
+2025-05-07 22:28:26,856 - INFO - Speaker Announcement: {'Attention! Bus 920X Lewis Farms to Lewis Farms is delayed by 19 minutes due to a heavy snow. Scheduled arrival time: 22:35, New arrival time: 22:54. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:26,856 - INFO - Delay detected for route Bus 526 Mill Woods: 6 minutes
+2025-05-07 22:28:26,856 - INFO - Speaker Announcement: {'Attention! Bus 526 Mill Woods to Mill Woods is delayed by 6 minutes due to a heavy snow. Scheduled arrival time: 22:40, New arrival time: 22:46. We apologize for any inconvenience caused.'}
+2025-05-07 22:28:26,856 - INFO - Delay detected for route Bus 923 West Edmonton Mall: 10 minutes
+2025-05-07 22:28:26,856 - INFO - Speaker Announcement: {'Attention! Bus 923 West Edmonton Mall to West Edmonton Mall is delayed by 10 minutes due to a mechanical issue. Scheduled arrival time: 22:37, New arrival time: 22:47. We apologize for any inconvenience caused.'}
