@@ -51,7 +51,7 @@ async def serve_index():
         return Response(content=f.read(), media_type="text/html")
 
 
-@app.get("/api/health") # Health check route to help ALB validate the service
+@app.get("/health") # Health check route to help ALB validate the service
 def health_check():
     """
     Health check endpoint
