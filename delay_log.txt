@@ -1662,3 +1662,171 @@
 2025-05-04 21:53:50,053 - INFO - Speaker Announcement: {'Attention! Bus 903 Jasper Place to Jasper Place is delayed by 19 minutes due to a heavy snow. Scheduled arrival time: 22:14, New arrival time: 22:33. We apologize for any inconvenience caused.'}
 2025-05-04 21:53:50,053 - INFO - Delay detected for route Bus 103 Eaux Claires: 20 minutes
 2025-05-04 21:53:50,053 - INFO - Speaker Announcement: {'Attention! Bus 103 Eaux Claires to Eaux Claires is delayed by 20 minutes due to a heavy snow. Scheduled arrival time: 21:58, New arrival time: 22:18. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:29,163 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:29,168 - INFO - Sending SMS: {'Bus 104 Clareview to Clareview encountered an unexpected delay, and will be 18 minutes late. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:29,170 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:29,170 - INFO - Sending SMS: {'Bus 915 Jasper Place to Jasper Place encountered an unexpected delay, and will be 7 minutes late. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:29,170 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:29,170 - INFO - Sending SMS: {'Bus 909 Westmount to Westmount encountered an unexpected delay, and will be 15 minutes late. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:29,170 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:29,170 - INFO - Sending SMS: {'Bus 119 Clareview to Clareview encountered an unexpected delay, and will be 17 minutes late. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:30,774 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:30,776 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:30,776 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:30,776 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:30,776 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:30,778 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:30,780 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:30,780 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:36,979 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:36,981 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:36,981 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:36,981 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:36,981 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:36,981 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:36,981 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:36,981 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:37,868 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:37,868 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:37,868 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:37,868 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:37,872 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:37,874 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:37,876 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:37,876 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:38,972 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:38,972 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:38,976 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:38,976 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:38,976 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:38,976 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:38,976 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:38,978 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:39,792 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:39,792 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:39,792 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:39,792 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:39,792 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:39,792 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:39,792 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:39,792 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:51,735 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:51,735 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:51,735 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:51,735 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:51,735 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:51,735 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:51,735 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:51,735 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:52,348 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:52,348 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:52,350 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:52,350 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:52,350 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:52,350 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:52,350 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:52,350 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,548 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:54,548 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,550 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:54,550 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,550 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:54,550 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,550 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:54,550 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,692 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:54,692 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,692 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:54,692 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,692 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:54,692 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,692 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:54,692 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,879 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:54,879 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,879 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:54,879 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,879 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:54,879 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:54,879 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:54,879 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,049 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:55,049 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,049 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:55,049 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,051 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:55,051 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,051 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:55,051 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,216 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:55,216 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,216 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:55,216 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,216 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:55,216 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,216 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:55,216 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,343 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:55,343 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,343 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:55,343 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,343 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:55,343 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,343 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:55,343 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,468 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:55,468 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,468 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:55,468 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,468 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:55,468 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,468 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:55,468 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,872 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:55,874 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,874 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:55,874 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,876 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:55,876 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:55,876 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:55,876 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,095 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:56,095 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,095 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:56,095 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,095 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:56,095 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,095 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:56,097 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,525 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:56,525 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,525 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:56,525 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,525 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:56,525 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,525 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:56,525 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,742 - INFO - Delay detected for route Bus 104 Clareview: 18 minutes
+2025-05-07 19:17:56,742 - INFO - Speaker Announcement: {'Attention! Bus 104 Clareview to Clareview is delayed by 18 minutes due to a traffic jam. Scheduled arrival time: 19:35, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,742 - INFO - Delay detected for route Bus 915 Jasper Place: 7 minutes
+2025-05-07 19:17:56,742 - INFO - Speaker Announcement: {'Attention! Bus 915 Jasper Place to Jasper Place is delayed by 7 minutes due to a mechanical issue. Scheduled arrival time: 19:31, New arrival time: 19:38. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,742 - INFO - Delay detected for route Bus 909 Westmount: 15 minutes
+2025-05-07 19:17:56,742 - INFO - Speaker Announcement: {'Attention! Bus 909 Westmount to Westmount is delayed by 15 minutes due to a mechanical issue. Scheduled arrival time: 19:38, New arrival time: 19:53. We apologize for any inconvenience caused.'}
+2025-05-07 19:17:56,742 - INFO - Delay detected for route Bus 119 Clareview: 17 minutes
+2025-05-07 19:17:56,742 - INFO - Speaker Announcement: {'Attention! Bus 119 Clareview to Clareview is delayed by 17 minutes due to a traffic jam. Scheduled arrival time: 19:25, New arrival time: 19:42. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:19,130 - INFO - Delay detected for route Bus 512 Mill Woods: 6 minutes
+2025-05-07 19:19:19,130 - INFO - Speaker Announcement: {'Attention! Bus 512 Mill Woods to Mill Woods is delayed by 6 minutes due to a heavy snow. Scheduled arrival time: 19:45, New arrival time: 19:51. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:19,130 - INFO - Delay detected for route Bus 589 Coliseum: 7 minutes
+2025-05-07 19:19:19,130 - INFO - Speaker Announcement: {'Attention! Bus 589 Coliseum to Coliseum is delayed by 7 minutes due to a traffic jam. Scheduled arrival time: 19:48, New arrival time: 19:55. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:19,130 - INFO - Delay detected for route Bus 915 West Edmonton Mall: 8 minutes
+2025-05-07 19:19:19,130 - INFO - Speaker Announcement: {'Attention! Bus 915 West Edmonton Mall to West Edmonton Mall is delayed by 8 minutes due to an emergency maintenance. Scheduled arrival time: 19:33, New arrival time: 19:41. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:19,130 - INFO - Delay detected for route Bus 500X Meadows: 16 minutes
+2025-05-07 19:19:19,130 - INFO - Speaker Announcement: {'Attention! Bus 500X Meadows to Meadows is delayed by 16 minutes due to a mechanical issue. Scheduled arrival time: 19:36, New arrival time: 19:52. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:20,915 - INFO - Delay detected for route Bus 512 Mill Woods: 6 minutes
+2025-05-07 19:19:20,915 - INFO - Sending SMS: {'Bus 512 Mill Woods to Mill Woods encountered an unexpected delay, and will be 6 minutes late. Scheduled arrival time: 19:45, New arrival time: 19:51. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:20,917 - INFO - Delay detected for route Bus 589 Coliseum: 7 minutes
+2025-05-07 19:19:20,917 - INFO - Sending SMS: {'Bus 589 Coliseum to Coliseum encountered an unexpected delay, and will be 7 minutes late. Scheduled arrival time: 19:48, New arrival time: 19:55. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:20,917 - INFO - Delay detected for route Bus 915 West Edmonton Mall: 8 minutes
+2025-05-07 19:19:20,917 - INFO - Sending SMS: {'Bus 915 West Edmonton Mall to West Edmonton Mall encountered an unexpected delay, and will be 8 minutes late. Scheduled arrival time: 19:33, New arrival time: 19:41. We apologize for any inconvenience caused.'}
+2025-05-07 19:19:20,917 - INFO - Delay detected for route Bus 500X Meadows: 16 minutes
+2025-05-07 19:19:20,917 - INFO - Sending SMS: {'Bus 500X Meadows to Meadows encountered an unexpected delay, and will be 16 minutes late. Scheduled arrival time: 19:36, New arrival time: 19:52. We apologize for any inconvenience caused.'}

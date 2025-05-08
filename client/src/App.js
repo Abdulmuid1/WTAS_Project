@@ -13,20 +13,33 @@ function App() {
   const [showSpeaker, setShowSpeaker] = useState(false);
   const [smsDelays, setSmsDelays] = useState([]);
   const [speakerDelays, setSpeakerDelays] = useState([]);
+  const [smsLastUpdated, setSmsLastUpdated] = useState(null);
+  const [speakerLastUpdated, setSpeakerLastUpdated] = useState(null);
+  
+  // Toggles the SMS Alerts section visibility
+  const handleToggleSms = () => setShowSMS(!showSMS);
 
+  // Toggles the Speaker Announcements section visibility
+  const handleToggleSpeaker = () => setShowSpeaker(!showSpeaker);
 
-  const handleSendSms = () => {
+  // Fetches updated SMS delays and sets the last updated time
+  const handleRefreshSms = () => {
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/sms`, {})
-      .then((response) => setSmsDelays(response.data.data))
-      .catch((error) => console.error("Error sending SMS alerts:", error));
-    setShowSMS(true); // show the section after clicking
+      .then((response) => {
+        setSmsDelays(response.data.data);
+        setSmsLastUpdated(new Date());
+      })
+      .catch((error) => console.error("Error fetching SMS alerts:", error));
   };
 
-  const handleAnnounce = () => {
+  // Fetches updated Speaker delays and sets the last updated time
+  const handleRefreshSpeaker = () => {
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/speaker`, {})
-      .then((response) => setSpeakerDelays(response.data.data))
-      .catch((error) => console.error("Error sending speaker announcements:", error));
-    setShowSpeaker(true); // show the section after clicking
+      .then((response) => {
+        setSpeakerDelays(response.data.data);
+        setSpeakerLastUpdated(new Date());
+      })
+      .catch((error) => console.error("Error fetching speaker announcements:", error));
   };
 
   return (
@@ -39,17 +52,28 @@ function App() {
       <DelayAlerts />
 
       <div style={{ margin: "20px" }}>
-        <button className="attention-button" onClick={handleSendSms}>
-          <FaSms /> Send SMS Alerts
+        <button className="attention-button" onClick={handleToggleSms}>
+          <FaSms /> {showSMS ? "Hide" : "Show"} SMS Alerts
         </button>
-        <button className="attention-button" onClick={handleAnnounce}>
-          <FaBullhorn /> Announce via Speaker
+        <button className="attention-button" onClick={handleRefreshSms}>
+        <span role="img" aria-label="refresh">🔄 Refresh SMS Alerts</span>
+        </button>
+        <br /><br />
+        <button className="attention-button" onClick={handleToggleSpeaker}>
+          <FaBullhorn /> {showSpeaker ? "Hide" : "Show"} Speaker Announcements
+        </button>
+        <button className="attention-button" onClick={handleRefreshSpeaker}>
+        <span role="img" aria-label="refresh">🔄 Refresh Speaker Announcements</span>
         </button>
       </div>
 
+      {showSMS && (
+        <SmsAlerts delays={smsDelays} lastUpdated={smsLastUpdated} />
+      )}
 
-      {showSMS && <SmsAlerts delays={smsDelays} />}
-      {showSpeaker && <SpeakerAnnouncements delays={speakerDelays} />}
+      {showSpeaker && (
+        <SpeakerAnnouncements delays={speakerDelays} lastUpdated={speakerLastUpdated} />
+      )}
 
       <footer>
       <p>&copy; {new Date().getFullYear()} Winter Transit Alert System - Edmonton</p>
