@@ -5,7 +5,7 @@ function DelayAlerts() {
   const [hasDelays, setHasDelays] = useState(false);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/delays`) // FastAPI backend URL for delays
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/delays`) // FastAPI backend URL for delays
       .then(response => {
         if (response.data && response.data.data && response.data.data.length > 0) {
           setHasDelays(true);
