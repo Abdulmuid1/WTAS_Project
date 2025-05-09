@@ -13,6 +13,7 @@ pipeline {
             agent {
                 docker {
                      image 'amazonlinux:latest'
+                      args '--user root'
                 }
             }
             steps {
