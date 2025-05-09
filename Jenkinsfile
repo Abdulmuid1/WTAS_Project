@@ -9,35 +9,64 @@ pipeline {
     }
 
     stages {
-        stage('Build React Frontend using Node container') {
-            options {
-                timeout(time: 25, unit: 'MINUTES')  // Longer timeout
-            }
+        stage('Deploy to ECS with Terraform') {
             steps {
-                dir('client') {
+                echo "Deploying to ECS using Terraform..."
+                dir('terraform') {
+                    sh '''
+                        apk add --no-cache curl python3 py3-pip aws-cli
+                        aws configure set region $AWS_REGION
+                        terraform init -upgrade
+                        terraform apply -auto-approve
+                    '''
+                }
+            }
+        }
+
+        stage('Fetch ALB DNS from AWS') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding',
+                    credentialsId: 'aws-credentials',
+                    usernameVariable: 'AWS_ACCESS_KEY_ID',
+                    passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
                     script {
-                        docker.image('node:18-slim').inside('--user root -w /app') { // Run as root
-                            sh 'mkdir -p /app && chmod -R 777 /app' // Ensure permissions
-                            sh 'cp -r . /app'
-                            retry(2) {
-                                sh '''
-                                    npm config set registry https://registry.npmjs.org/
-                                    npm config set fetch-retries 5
-                                    npm config set fetch-retry-mintimeout 20000
-                                    npm config set fetch-retry-maxtimeout 120000
-                                    npm cache clean --force
-                                    cd /app && npm install --no-audit --verbose
-                                '''
-                            }
-                            sh 'cd /app && NODE_OPTIONS=--openssl-legacy-provider npm run build'
-                            sh 'cp -r /app/build ./client/build' // copy from container to Jenkins workspace
-                        }
+                        def albDns = sh(
+                            script: """
+                                aws elbv2 describe-load-balancers \
+                                --names "wtas-lb" \
+                                --region $AWS_REGION \
+                                --query 'LoadBalancers[0].DNSName' \
+                                --output text
+                            """,
+                            returnStdout: true
+                        ).trim()
+
+                        env.REACT_APP_BACKEND_URL = "http://${albDns}"
+                        echo "Backend URL set to: ${env.REACT_APP_BACKEND_URL}"
                     }
                 }
             }
         }
 
-
+        stage('Rebuild React with Updated Backend URL') {
+            steps {
+                dir('client') {
+                    script {
+                        docker.image('node:18-slim').inside('--user root -w /app') {
+                            sh """
+                                echo "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}" > /app/.env
+                                cp -r . /app
+                                cd /app
+                                npm install --no-audit
+                                NODE_OPTIONS=--openssl-legacy-provider npm run build
+                                cp -r /app/build ./client/build
+                            """
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -74,18 +103,6 @@ pipeline {
                         docker tag $ECR_REPO:$IMAGE_TAG $repoUrl:$IMAGE_TAG
                         docker push $repoUrl:$IMAGE_TAG
                     """
-                }
-            }
-        }
-
-        stage('Deploy to ECS with Terraform') {
-            steps {
-                echo "Deploying to ECS using Terraform..."
-                dir('terraform') {
-                    sh '''
-                        terraform init
-                        terraform apply -auto-approve
-                    '''
                 }
             }
         }
