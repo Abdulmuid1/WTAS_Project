@@ -19,11 +19,24 @@ pipeline {
             steps {
                 dir('terraform') {
                     sh '''
+                        # Install required dependencies
                         yum install -y curl jq unzip --allowerasing
+
+                        # Install AWS CLI
                         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                         unzip awscliv2.zip
                         ./aws/install
                         aws configure set region $AWS_REGION
+
+                        # Install Terraform on Amazon Linux
+                        yum install -y yum-utils
+                        yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+                        yum install -y terraform
+
+                        # Verify Terraform installation
+                        terraform --version
+
+                        # Initialize and apply Terraform configuration
                         terraform init -upgrade
                         terraform apply -auto-approve
                     '''
