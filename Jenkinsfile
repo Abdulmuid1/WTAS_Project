@@ -18,12 +18,12 @@ pipeline {
             steps {
                 dir('terraform') {
                     sh '''
-                        # Set AWS region for Terraform and AWS CLI
-                        export AWS_REGION=ca-central-1
+                        apt-get update && apt-get install -y curl unzip python3-pip awscli
                         aws configure set region $AWS_REGION
                         terraform init -upgrade
                         terraform apply -auto-approve
                     '''
+
                 }
             }
         }
