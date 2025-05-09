@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir('terraform') {
                     sh '''
-                        yum install -y curl jq unzip
+                        yum install -y curl jq unzip --allowerasing
                         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
                         unzip awscliv2.zip
                         ./aws/install
