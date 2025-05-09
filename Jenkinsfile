@@ -10,11 +10,16 @@ pipeline {
 
     stages {
         stage('Deploy to ECS with Terraform') {
+            agent {
+                docker {
+                    image 'hashicorp/terraform:1.5.7'
+                }
+            }
             steps {
-                echo "Deploying to ECS using Terraform..."
                 dir('terraform') {
                     sh '''
-                        apk add --no-cache curl python3 py3-pip aws-cli
+                        # Set AWS region for Terraform and AWS CLI
+                        export AWS_REGION=ca-central-1
                         aws configure set region $AWS_REGION
                         terraform init -upgrade
                         terraform apply -auto-approve
