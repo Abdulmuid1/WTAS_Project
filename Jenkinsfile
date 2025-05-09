@@ -13,17 +13,21 @@ pipeline {
             agent {
                 docker {
                     image 'hashicorp/terraform:1.5.7'
+                    // Override the default entrypoint to allow commands to be executed:
+                    args '--entrypoint=""'
                 }
             }
             steps {
                 dir('terraform') {
                     sh '''
-                        apt-get update && apt-get install -y curl unzip python3-pip awscli
+                        # Use apk (Alpine Package Manager) instead of apt-get
+                        apk update && apk add --no-cache curl unzip python3 py3-pip
+                        # Install AWS CLI using pip
+                        pip3 install awscli
                         aws configure set region $AWS_REGION
                         terraform init -upgrade
                         terraform apply -auto-approve
                     '''
-
                 }
             }
         }
@@ -34,19 +38,17 @@ pipeline {
                     credentialsId: 'aws-credentials',
                     usernameVariable: 'AWS_ACCESS_KEY_ID',
                     passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-
                     script {
                         def albDns = sh(
                             script: """
-                                aws elbv2 describe-load-balancers \
-                                --names "wtas-lb" \
-                                --region $AWS_REGION \
-                                --query 'LoadBalancers[0].DNSName' \
+                                aws elbv2 describe-load-balancers \\
+                                --names "wtas-lb" \\
+                                --region $AWS_REGION \\
+                                --query 'LoadBalancers[0].DNSName' \\
                                 --output text
                             """,
                             returnStdout: true
                         ).trim()
-
                         env.REACT_APP_BACKEND_URL = "http://${albDns}"
                         echo "Backend URL set to: ${env.REACT_APP_BACKEND_URL}"
                     }
@@ -60,7 +62,7 @@ pipeline {
                     script {
                         docker.image('node:18-slim').inside('--user root -w /app') {
                             sh """
-                                echo "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}" > /app/.env
+                                echo "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}" > .env
                                 cp -r . /app
                                 cd /app
                                 npm install --no-audit
@@ -86,13 +88,11 @@ pipeline {
                     credentialsId: 'aws-credentials',
                     usernameVariable: 'AWS_ACCESS_KEY_ID',
                     passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-
                     echo "Logging into AWS ECR..."
                     sh '''
                         aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
                         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
                         aws configure set region $AWS_REGION
-
                         aws ecr get-login-password | docker login --username AWS --password-stdin https://$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
                     '''
                 }
