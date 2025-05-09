@@ -12,18 +12,16 @@ pipeline {
         stage('Deploy to ECS with Terraform') {
             agent {
                 docker {
-                    image 'hashicorp/terraform:1.5.7'
-                    // Override the default entrypoint to allow commands to be executed:
-                    args '--entrypoint=""'
+                     image 'amazonlinux:latest'
                 }
             }
             steps {
                 dir('terraform') {
                     sh '''
-                        # Use apk (Alpine Package Manager) instead of apt-get
-                        apk update && apk add --no-cache curl unzip python3 py3-pip
-                        # Install AWS CLI using pip
-                        pip3 install awscli
+                        yum install -y curl jq unzip
+                        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                        unzip awscliv2.zip
+                        ./aws/install
                         aws configure set region $AWS_REGION
                         terraform init -upgrade
                         terraform apply -auto-approve
