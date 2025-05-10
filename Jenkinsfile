@@ -89,9 +89,10 @@ pipeline {
                         writeFile file: '.env', text: "REACT_APP_BACKEND_URL=${backendUrl}\n"
                         docker.image('node:18-slim').inside('--user root -w /app') {
                             sh '''
-                                cp -r /var/jenkins_home/workspace/WTAS-Pipeline/client/* /app
-                                cp /var/jenkins_home/workspace/WTAS-Pipeline/client/.env /app/.env
+                                mkdir -p /app
+                                cp -r /var/jenkins_home/workspace/WTAS-Pipeline/client/. /app
                                 cd /app
+                                echo "REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}" > .env
                                 npm install --no-audit
                                 NODE_OPTIONS=--openssl-legacy-provider npm run build
                                 cp -r /app/build /var/jenkins_home/workspace/WTAS-Pipeline/client/
