@@ -17,6 +17,11 @@ pipeline {
                 }
             }
             steps {
+                 withCredentials([[$class: 'UsernamePasswordMultiBinding',
+                          credentialsId: 'aws-credentials',
+                          usernameVariable: 'AWS_ACCESS_KEY_ID',
+                          passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+
                 dir('terraform') {
                     sh '''
                         # Install required dependencies
@@ -24,7 +29,7 @@ pipeline {
 
                         # Install AWS CLI
                         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                        unzip -o awscliv2.zip || exit 1   # Overwrite files       
+                        unzip -o awscliv2.zip || exit 1   # Overwrite files 
                        ./aws/install
                         aws configure set region $AWS_REGION
 
@@ -40,6 +45,7 @@ pipeline {
                         terraform init -upgrade
                         terraform apply -auto-approve
                     '''
+                    }
                 }
             }
         }
