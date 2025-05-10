@@ -1,7 +1,7 @@
 
 # Winter Transit Alert System (WTAS)
 
-A cloud-deployed, real-time transit delay alert application built with FastAPI, React, Terraform, AWS ECS, and GitLab CI/CD. It delivers timely bus/train delay notifications during harsh Edmonton winters via SMS-style alerts and speaker-style announcements. This project was primarily an opportunity for me to gain practical experience using modern DevOps tools like GitLab, Terraform, Docker, and ECS. I wanted to move beyond theory and actually apply them in a complete deployment pipeline
+A cloud-deployed, real-time transit delay alert application built with FastAPI, React, Terraform, AWS ECS, and GitLab CI/CD. It delivers timely bus/train delay notifications during harsh Edmonton winters via SMS-style alerts and speaker-style announcements. This project was primarily an opportunity for me to gain practical experience using modern DevOps tools like GitLab, Jenkins, Terraform, Docker, and ECS. I wanted to move beyond theory and actually apply them in a complete deployment pipeline
 
 ## Overview
 
@@ -19,6 +19,7 @@ WTAS helps transit users stay informed about delays during winter conditions by 
 - **React** for frontend alerts interface
 - **Terraform** for infrastructure as code (ECS, ALB, VPC, IAM, CloudWatch)
 - **Docker** for containerization
+- **Jenkins** for an alternative CI/CD pipeline to automate infrastructure provisioning and container deployment
 - **GitLab CI/CD** for automated build, deploy, and variable updates
 - **Amazon ECS + ALB + ECR** for container orchestration
 - **Node.js**, **Axios**, and **CORS middleware**
@@ -80,16 +81,16 @@ Visit: [http://localhost:3000]
 
 ##  Production Deployment (AWS ECS)
 
-The app is deployed to AWS via Terraform and GitLab CI/CD:
+The app is deployed to AWS via Terraform and supports full CI/CD automation using GitLab and Jenkins pipelines.
 
-- `terraform/main.tf` provisions ECS, Load Balancer, IAM roles, and networking
-- CI/CD pipeline stages:
-  - deploy-backend – Terraform provisions all AWS infrastructure (ECS, ALB, etc.)
-  - update-backend-url – GitLab syncs the new ALB DNS to REACT_APP_BACKEND_URL
-  - rebuild-react – React rebuilds with the correct backend URL
-  - dockerize-final – Docker image is rebuilt and pushed to ECR
+- terraform/main.tf provisions the full AWS stack: ECS Cluster, Service, Task Definition, VPC, ALB, IAM Roles, Subnets, and Security Groups.
+- Docker images are built and pushed to Amazon ECR.
+- Backend is deployed as a container to AWS ECS Fargate.
+- Frontend React app is rebuilt with the updated ALB DNS and served statically.
+  
 
 ### GitLab CI/CD Preview
+GitLab handles fast, straightforward deployments with the following stages:
 
 ```yaml
 stages:
@@ -98,6 +99,29 @@ stages:
   - rebuild-react
   - dockerize-final
 ```
+- GitLab automatically fetches the ALB DNS and injects it into the React .env file.
+- React rebuilds after the backend DNS is updated, and the Docker image is pushed to ECR.
+- Fast deployment (7 minutes approximately) with environment variables managed via GitLab UI.
+
+
+### Jenkins CI/CD Preview
+Jenkins was used for a comparative pipeline, emphasizing infrastructure control and internal customization.
+
+```yaml
+stages:
+  - Deploy to ECS with Terraform
+  - Fetch ALB DNS URL from AWS
+  - Rebuild React with Updated DNS Backend URL
+  - Build Docker Image
+  - Login to AWS ECR
+  - Tag & Push Docker Image
+```
+- Jenkins uses a Jenkinsfile with equivalent stages, including React rebuild, AWS login, Terraform deploy, and Docker push.
+- React .env file is written manually, and build artifacts are explicitly copied.
+- Deployment time is longer (~25 minutes) due to additional container setups and manual environment handling.
+- Showcases how Jenkins can replicate GitLab workflows while offering fine-grained control.
+
+Jenkins provided hands-on experience in managing custom pipelines with Docker agents, manual .env injection, and container lifecycle, valuable for aspiring DevOps engineers aiming to understand pipeline internals.
 
 ## Directory Structure
 
@@ -142,6 +166,9 @@ WTAS_Project/
    - Then click the **Show SMS Alerts** or **Show Speaker Announcements** button to reveal the alerts.
 - You can hide the alerts by clicking the same button again.
 - The "Last updated" timestamp appears below the title, indicating when the data was last refreshed.
+
+**Note**: Deploying the application online using AWS services (ECS, ALB, ECR, etc.) may incur cloud infrastructure charges based on your AWS usage. If you're testing locally, no AWS costs will apply.
+
 
 ## Troubleshooting
 
