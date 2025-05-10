@@ -6,6 +6,7 @@ pipeline {
         ECR_REPO = 'wtas-api'
         IMAGE_TAG = 'latest'
         AWS_ACCOUNT_ID = '643989280406'
+        REACT_APP_BACKEND_URL = ''
     }
 
     stages {
@@ -32,6 +33,9 @@ pipeline {
                         unzip -o awscliv2.zip || exit 1   # Overwrite files 
                        ./aws/install
                         aws configure set region $AWS_REGION
+                        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
 
                         # Install Terraform on Amazon Linux
                         yum install -y yum-utils
@@ -85,7 +89,7 @@ pipeline {
                                 cd /app
                                 npm install --no-audit
                                 NODE_OPTIONS=--openssl-legacy-provider npm run build
-                                cp -r /app/build ./client/build
+                                mkdir -p ./client && cp -r /app/build ./client/build
                             """
                         }
                     }
