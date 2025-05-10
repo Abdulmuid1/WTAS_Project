@@ -6,7 +6,6 @@ pipeline {
         ECR_REPO = 'wtas-api'
         IMAGE_TAG = 'latest'
         AWS_ACCOUNT_ID = '643989280406'
-        REACT_APP_BACKEND_URL = ''
     }
 
     stages {
@@ -71,8 +70,11 @@ pipeline {
                             """,
                             returnStdout: true
                         ).trim()
-                        env.REACT_APP_BACKEND_URL = "http://${albDns}"
-                        echo "Backend URL set to: ${env.REACT_APP_BACKEND_URL}"
+                        if (!albDns) {
+                            error("ALB DNS not found. Exiting.")
+                        }
+                        writeFile file: 'backend_url.txt', text: "http://${albDns}"
+                        echo "Backend URL set to: http://${albDns}"
                     }
                 }
             }
@@ -82,11 +84,13 @@ pipeline {
             steps {
                 dir('client') {
                     script {
+                        def backendUrl = readFile('../backend_url.txt').trim()
                         // Write the env file in Jenkins workspace before entering the container
-                        writeFile file: '.env', text: "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}\n"
+                        writeFile file: '.env', text: "REACT_APP_BACKEND_URL=${backendUrl}\n"
                         docker.image('node:18-slim').inside('--user root -w /app') {
                             sh '''
                                 cp -r /var/jenkins_home/workspace/WTAS-Pipeline/client/* /app
+                                cp /var/jenkins_home/workspace/WTAS-Pipeline/client/.env /app/.env
                                 cd /app
                                 npm install --no-audit
                                 NODE_OPTIONS=--openssl-legacy-provider npm run build
