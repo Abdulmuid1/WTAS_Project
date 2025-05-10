@@ -82,20 +82,22 @@ pipeline {
             steps {
                 dir('client') {
                     script {
+                        // Write the env file in Jenkins workspace before entering the container
+                        writeFile file: '.env', text: "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}\n"
                         docker.image('node:18-slim').inside('--user root -w /app') {
-                            sh """
-                                echo "REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL}" > .env
-                                cp -r . /app
+                            sh '''
+                                cp -r /var/jenkins_home/workspace/WTAS-Pipeline/client/* /app
                                 cd /app
                                 npm install --no-audit
                                 NODE_OPTIONS=--openssl-legacy-provider npm run build
-                                mkdir -p ./client && cp -r /app/build ./client/build
-                            """
+                                cp -r /app/build /var/jenkins_home/workspace/WTAS-Pipeline/client/
+                            '''
                         }
                     }
                 }
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
