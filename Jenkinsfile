@@ -85,6 +85,7 @@ pipeline {
                 dir('client') {
                     script {
                         def backendUrl = readFile('../backend_url.txt').trim()
+                        sh '[ -f .env ] && rm .env'   // Check for the existence of .env before removing it
                         // Write the env file in Jenkins workspace before entering the container
                         writeFile file: '.env', text: "REACT_APP_BACKEND_URL=${backendUrl}\n"
                         docker.image('node:18-slim').inside('--user root -w /app') {
